@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 홀짝맞추기 게임 (0 : 짝수, 1 : 홀수)
+        let input;
+        let random;
+        // 0,1 난수 생성
+        random = Math.floor(Math.random() * 2)
+        console.log(random);
+        
+        // 0,1 중에서 입력
+        input = prompt('0 또는 1중에 하나만 입력 해 주세요');
+        // 정답 출력
+        if (input > 1 || input < 0)
+        {
+            alert('0 또는 1만 입력 해 주세요');
+        }
+        else if (random == parseInt(input))
+        {
+            document.write()
+            alert('정답입니다');
+        }
+        else
+        {
+            document.write()
+            alert('오답입니다');
+        }
+
+
+    </script>
+</body>
+</html>

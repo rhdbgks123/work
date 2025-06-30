@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let random;
+        let input;
+        
+        
+        while(true)
+        {
+            random = Math.floor(Math.random() * 2);
+            input = prompt("0 : 홀 1 : 짝");
+            if (input == random)
+            {
+                alert("승리");
+                break;
+            }
+            alert("패배");
+        }
+    </script>
+</body>
+</html>
