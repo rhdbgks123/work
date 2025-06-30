@@ -1,0 +1,45 @@
+#container
+{
+    width: 600px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+#check
+{
+    text-align: center;
+}
+img
+{
+    width:100%;
+}
+h1
+{
+    background-color: black;
+    color: white;
+    font-size: 1em;
+    text-align: left;
+    /* height: 40px;
+    line-height: 40px; */
+    padding: 5px;
+    margin: 0;
+}
+h2
+{
+    
+    color: #ff0000;
+    font-size: 1.5em;
+}
+#check>p
+{
+    font-size: 1.2em;
+    line-height: 2em;
+    font-weight: bold;
+}
+.accent
+{
+    color: blue;
+}
+.smalltext
+{
+    font-size: 0.7em;
+}

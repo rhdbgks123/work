@@ -1,0 +1,132 @@
+         
+@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=Orbit&display=swap');
+
+#container{
+    width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+} 
+.orbit-regular {
+    font-family: "Orbit", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+nav ul{
+    list-style-position: inside;
+    text-align: center;
+}
+header{
+    background-color: beige;
+}
+nav li
+{
+    display: inline-block;
+    padding: 5px 10px 5px 5px;
+    margin: 10px 0;
+    text-align: center;
+    border-bottom: 2px solid #aaa;
+    border-bottom-left-radius: 30%;
+    border-bottom-right-radius: 30%;
+}
+nav li:hover
+{
+    border-color: red;
+}
+a{
+    text-decoration: none;
+    font-weight: bold;
+}
+a:visited
+{
+    color:blue;
+}
+section{
+    background-color: azure;
+    padding: 10px;
+}
+section>ul
+{           
+    
+    list-style-position: inside;
+    text-align: center;
+} 
+section>ul>li
+{            
+    list-style-position: inside;
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+} 
+article{
+    /* background-color: rgba(255,255,255,0.5); */
+    background-color: rgba(0,0,0,0.1);
+    border: 1px solid #aaa;
+    padding: 10px;
+    font-family: "Dongle", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size:  24px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+aside{ 
+    
+    padding: 10px;
+    background-color:khaki;
+}
+aside li
+{
+    line-height: 1.5;
+}
+footer{
+    background-color: black;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+img{
+    box-sizing: border-box;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 1px 1px 5px 3px black;
+    margin: 10px;
+    opacity: 0.5;
+}
+figure{
+    text-align: center;
+}
+.hid
+{
+    /* visibility: hidden; */
+    /* display: none; */
+    
+}
+img:hover
+{
+    opacity: 1;
+}
+.block_right
+{
+    display: block;
+    text-align: right;
+}
+.fixed
+{
+    background-color: aquamarine;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 70px;
+    position: fixed;
+    right: 50px;
+    bottom: 30px;
+    margin: 0px;
+}
+.fixed p
+{
+    margin: 0;
+}

@@ -1,0 +1,36 @@
+#container
+{
+    border: 1px solid #aaa;
+    padding: 20px;
+    width: 960px;
+    margin: 0 auto;
+}
+header
+{
+    border: 1px solid #aaa;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+section
+{
+    border: 1px solid #aaa;
+    width: 620px;
+    float: left;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+aside
+{
+    background-color: #aaa;
+    border: 1px solid #aaa;
+    width: 220px;
+    padding: 20px;
+    float: right;
+    margin-bottom: 20px;
+}
+footer
+{
+    border: 1px solid #aaa;
+    clear: both;
+    padding: 10px;
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang = "ko">
+    <head>
+        <meta charset="utf-8">
+        <title>index</title>
+        <style>
+        div p{
+            width: 500px;
+            height: 60px;
+            background-color: aqua;
+            text-align: center;
+            line-height: 60px;
+        }
+        /* table{
+            width: 80%;
+            border-spacing:  10px;
+         */
+
+         .shadow
+         {
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            line-height: 180px;
+            /* box-shadow: 0 0 10px 5px #000; */
+            /* box-shadow: 0 0 10px 5px #000 inset; */
+            border-style: solid;
+            padding: 10px;
+            /* border-radius: 50%; */
+            border-top-left-radius: 30%;
+            border-top-right-radius: 30%;
+         }
+         nav{
+            background-color: black;
+            padding: 10px;
+            /* height: 50px; */
+            overflow: scroll;
+            text-align: center;
+         }
+         nav img{
+            float: left;
+            width: 80px;
+            height: 80px;
+         }
+         nav ul{
+            float: right;
+            margin: 0;
+            padding: 0;
+            margin-top: 8.8px;
+         }
+         nav li{
+            
+            color:white;
+            float: left;
+            list-style: none;
+            border:1px solid #fff;
+            padding: 10px;
+            margin: 10px;
+         }
+         #box1
+         {
+            width: 100px;
+            height: 80px;
+            background-color: aliceblue;
+            text-align: center;
+            line-height: 80px;
+            position: relative;
+            top: -100px;
+            left: 100px;
+         }
+         #box2
+         {
+            width: 300px;
+            height: 300px;
+            background-color: yellow;
+            text-align: center;
+            position: relative;
+         }
+         #box2 div
+         {
+            width: 50px;
+            height: 50px;
+            background-color: aqua;
+         }
+         #b1
+         {
+            position:absolute;
+            left: 0;
+            top: 0;
+         }
+         #b2
+         {
+            position:absolute;
+            right: 0;
+            top: 0;
+         }
+         #b3
+         {
+            position:absolute;
+            left: 0;
+            bottom: 0;
+         }
+         #b4
+         {
+            position:absolute;
+            right: 0;
+            bottom: 0;
+         }
+         #b5
+         {
+            position:absolute;
+            left: 125px;
+            top: 125px;
+            z-index: 999;
+         }
+         #b6
+         {
+            top: 120px;
+            left: 130px;
+            position: absolute;
+            background-color: bisque !important;
+            z-index: 1000;
+         }
+         #b7
+         {
+            background-color: blue !important;
+            position: absolute;
+            top: 130px;
+            left: 120px;
+         }
+        </style>
+        
+    </head>
+    <body>
+        <div>
+            <p>세로정렬 가운데</p>
+        </div>
+        <nav>
+            <img src="img/과일.jpg" alt="">
+            <ul>
+                <li>메뉴1</li>
+                <li>메뉴2</li>
+                <li>메뉴3</li>
+                <li>메뉴4</li>
+            </ul>
+        </nav>
+        <table>
+            <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <caption>선물용과 가정용 상품 구성</caption>
+            <tr style="background-color: rgba(0, 0, 0, 0.171);">
+                <th>용도</th>
+                <th>중량</th>
+                <th>개수</th>
+                <th>가격</th>
+            </tr>
+            <tr>
+                <td rowspan="2" style="background-color: rgb(246,221,225);">선물용</td>
+                <td>5kg</td>
+                <td>11~16과</td>
+                <td>35,000원</td>
+            </tr>
+            <tr>
+                <td>5kg</td>
+                <td>18~26과</td>
+                <td>52,000원</td>
+            </tr>
+            <tr>
+                <td rowspan="2" style="background-color: rgb(246,221,225);">가정용</td>
+                <td>3kg</td>
+                <td>11~16과</td>
+                <td>30,000원</td>
+            </tr>
+            <tr>
+                <td>3kg</td>
+                <td>11~16과</td>
+                <td>47,000원</td>
+            </tr>
+            <tf>
+                <td  style="background-color: rgba(0, 0, 0, 0.171);" colspan="4">*제품 구매 시기에 따라 가격이 변동될 수 있습니다</td>
+            </tf>
+        </table>
+        <p class="shadow">박스그림자</p>
+        <div id="box1">
+            박스1
+        </div>
+        <div id="box2">
+            박스2
+            <div id ="b1">자식1</div>
+            <div id ="b2">자식2</div>
+            <div id ="b3">자식3</div>
+            <div id ="b4">자식4</div>
+            <div id ="b5">자식5</div>
+            <div id ="b6">자식6</div>
+            <div id ="b7">자식7</div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고유한</title>
+    <style>
+        *
+        {
+            box-sizing: border-box;
+            font-family: "맑은 고딕", 굴림, 돋움;
+        }
+        #container
+        {
+            width: 1000px;
+            margin: 0 auto;
+        }
+        h1
+        {
+            text-align: center;
+        }
+        nav
+        {
+            background-color: black;
+            color: white;
+        }
+        nav ul
+        {
+            list-style-type: none;
+            overflow: hidden;
+            /* padding: 5px; */
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li
+        {
+            /* margin: 10px; */
+            float: left;
+        }
+        nav a
+        {
+            display: block;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+        }
+        nav a:hover
+        {
+            background-color: yellow;
+            color: black;
+        }
+        .notice
+        {
+            float: right;
+        }
+        aside
+        {
+            width: 200px;
+            height: 500px;
+            text-align: center;
+            background-color: #eee;
+        }
+        #leftaside
+        {
+            font-size: 30px;
+            font-weight: bold;
+            float: left;
+        }
+        section
+        {
+            text-align: center;
+            float: left;
+            width: 600px;
+            height: 500px;
+            padding: 10px;
+        }
+        section form
+        {
+            width: 500px;
+            margin: 0 auto;
+            background-color: #ddd;
+            padding: 20px;
+        }
+        form fieldset
+        {
+            border: none;       
+        }
+        form legend
+        {
+            font-weight: bold;
+        }
+        form ul
+        {
+            padding: 0px;
+        }
+        form li
+        {
+            list-style-type: none;
+            background-color: rgba(255,255,255,0.5);
+            border: 1px solid white;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 5px;
+        }
+        form label
+        {
+            width: 130px;
+            display: inline-block;
+        }
+        form input
+        {
+            width: 250px;
+            padding: 3px;
+        }
+        form button
+        {
+            width: 150px;
+            border: none;
+            border-radius: 30px;
+            background-color: #fef;
+            padding: 15px;
+            cursor: pointer;
+        }
+        #rightaside
+        {
+            font-size: 30px;
+            font-weight: bold;
+            float: right;
+        }
+        footer
+        {
+            clear: both;
+            text-align: center;
+            font-size: 40px;
+            font-weight: bold;
+            background-color: #ccc;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+    <header>
+        <h1>고유한 페이지에 온 것을 환영합니다.</h1>
+        <nav>
+            <ul>
+                <li><a href="">메인메뉴1</a></li>
+                <li><a href="">메인메뉴2</a></li>
+                <li><a href="">메인메뉴3</a></li>
+                <li class="notice"><a href="">공지사항</a></li>
+            </ul>
+        </nav>
+    </header>
+    <aside id="leftaside">
+        <p>좌측 사이드</p>
+    </aside>
+    <section>
+        <h2>회원가입 영역입니다</h2>
+        <form action="">
+            <fieldset>
+                <legend>개인정보 등록</legend>
+                <ul>
+                    <li>
+                        <label for="uid">계정아이디</label>
+                        <input type="text" name="uid" id="uid" autofocus>
+                    </li>
+                    <li>
+                        <label for="pw">비밀번호</label>
+                        <input type="password" name="pw" id="pw">
+                    </li>
+                    <li>
+                        <label for="pwcheck">비밀번호 확인</label>
+                        <input type="password" name="pwcheck" id="pwcheck   ">
+                    </li>
+                    <li>
+                        <label for="unm">이름</label>
+                        <input type="text" name="unm" id="unm" maxlength="5" placeholder="5자 미만 공백없이">
+                    </li>
+                    <li>
+                        <label for="phone">전화번호</label>
+                        <input type="tel" name="phone" id="phone">
+                    </li>
+                </ul>
+            </fieldset>
+            <fieldset class="button_field">
+                <button type="submit">회원가입</button>
+                <button type="reset">정보수정</button>
+            </fieldset>
+        </form>
+    </section>
+    <aside id="rightaside">
+        <p>우측사이드</p>
+    </aside>
+    <footer>
+        <p>푸터영역 입니다</p>
+    </footer>
+    </div>
+</body>
+</html>
