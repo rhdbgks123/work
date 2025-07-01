@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도전문제</title>
+</head>
+<body>
+    <h1>도전문제</h1>
+    <script>
+        // 숫자 홀짝 구분
+        // let inputnumber;
+        // inputnumber = prompt("숫자를 입력해 주세요");
+        // if(!Boolean(inputnumber))
+        // {
+        //     alert("입력이 취소되었습니다.");
+        // }
+        // else
+        // {
+        //     if(inputnumber%2 == 1)
+        //     {
+        //         alert("홀수");
+        //     }
+        //     else
+        //     {
+        //         alert("짝수");
+        //     }
+        // }
+
+        // 국영수 점수입력받아 평균, 평가 출력
+        
+        let kor, eng, mat;
+        let avg, grd, week;
+        
+        
+        while(true)
+        {
+            kor = parseInt(prompt("국어점수 입력"));
+            if(kor > 100 || kor < 0)
+            {
+                alert("점수는 0점이상 100점 이하입니다.");
+                continue;
+            }
+
+            eng = parseInt(prompt("영어점수 입력"));
+            if(eng > 100 || eng < 0)
+            {
+                alert("점수는 0점이상 100점 이하입니다.");
+                continue;
+            }
+
+            mat = parseInt(prompt("수학점수 입력"));
+            if(mat > 100 || mat < 0)
+            {
+                alert("점수는 0점이상 100점 이하입니다.");
+                continue;
+            }
+            
+            avg = parseInt((kor + eng + mat) / 3);
+            if(!Boolean(parseInt(avg)))
+            {
+                alert("숫자입력 오류. 처음부터 다시 입력해 주세요.");
+                continue;
+            }
+            if(avg >= 0 && avg <= 100)
+                break;
+        }
+
+        if(avg >= 90)
+        {
+            // console.log("수");
+            grd = "수";
+        }
+        else if(avg >= 80)
+        {
+            // console.log("우");
+            grd = "우";            
+        }
+        else if(avg >= 70)
+        {
+            // console.log("미");
+            grd = "미";
+        }
+        else if(avg >= 60)
+        {
+            // console.log("양");
+            grd = "양";
+        }
+        else
+        {
+            // console.log("가");
+            grd = "가";
+        }
+        console.log(avg + " -> " + grd);
+        switch(parseInt(avg / 10)){
+            case 10 :
+            case 9 : grd = "수";
+                     break;
+            case 8 : grd = "우";
+                     break;
+            case 7 : grd = "미";
+                     break;
+            case 6 : grd = "양";
+                     break;
+            default : grd = "가";
+        }
+        console.log(avg + " -> " + grd);
+
+        
+        switch(avg % 7)
+        {
+            case 0 : week = "일요일";
+                     break;
+            case 1 : week = "월요일";
+                     break;
+            case 2 : week = "화요일";
+                     break;
+            case 3 : week = "수요일";
+                     break;
+            case 4 : week = "목요일";
+                     break;
+            case 5 : week = "금요일";
+                     break;
+            default : week = "토요일";
+        }
+        console.log("평균 : " + avg + "\n나머지 : " + (avg % 7) + "\n" + week);
+
+    </script>
+
+
+
+</body>
+</html>

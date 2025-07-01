@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        div
+        {
+            width:100px;
+            background-color: #ccc;
+            float: left;
+            padding: 10px;
+            margin: 10px;
+        }
+        div h3
+        {
+            text-align: center;
+        }
+        div p
+        {
+            padding-left: 15px;
+        }
+    </style>
 </head>
 <body>
     <script>
@@ -12,22 +30,48 @@
         //     console.log(i, '홍길동');
         // }
 
-        let sum = 0 ;
-        let num = prompt();
+        // let sum = 0 ;
+        // let num = prompt();
 
 
-        // sum += 1;
-        // sum += 2;
-        // sum += 3;
-        // sum += 4;
-        // sum += 5;
+        // // sum += 1;
+        // // sum += 2;
+        // // sum += 3;
+        // // sum += 4;
+        // // sum += 5;
 
-        for (let i = 1 ; i <= num ; i ++)
+        // for (let i = 1 ; i <= num ; i ++)
+        // {
+        //     sum += i;
+        // }
+
+        // for (let i = 2 ; i <= 9 ; i ++)
+        // {
+        //     document.write('<div>');
+        //     document.write(`<h3>==${i}단==</h3>`);
+        //     document.write('<p>');
+        //     for (let j = 1 ; j <= 9 ; j ++)
+        //     {
+        //         document.write(`${i} X ${j} = ${i*j}<br>`);
+        //     }
+        //     document.write('</p>');
+        //     document.write('</div>');
+        // }
+
+        let gugudan ="";
+        for (let i = 2 ; i <= 9 ; i ++)
         {
-            sum += i;
+            gugudan += '<div>';
+            gugudan += `<h3>==${i}단==</h3>`;
+            gugudan += '<p>';
+            for (let j = 1 ; j <= 9 ; j ++)
+            {
+                gugudan += `${i} X ${j} = ${i*j}<br>`;
+            }
+            gugudan += '</p>';
+            gugudan += '</div>';
         }
-
-        console.log(sum);
+        document.write(gugudan);
 
     </script>
 </body>

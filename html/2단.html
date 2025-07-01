@@ -4,7 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2단 레이아웃</title>
-    <link href="css/2단.css" rel="stylesheet">
+    <!-- <link href="css/2단.css" rel="stylesheet"> -->
+     <style>
+        #container
+        {
+            border: 1px solid #ccc;
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            /* justify-content: space-between; */
+            /* justify-content: space-around; */
+            justify-content: space-evenly;
+        }
+        header
+        {
+            border: 1px solid #ccc;
+            width: 90%;
+        }
+        section
+        {
+            width: 70%;
+            background-color: beige;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        section h2
+        {
+            width: 100%;
+        }
+        aside
+        {
+            width: 20%;
+            background-color: #ccc;
+        }
+        footer
+        {
+            width: 100%;
+        }
+     </style>
 </head>
 <body>
     <div id="container">
