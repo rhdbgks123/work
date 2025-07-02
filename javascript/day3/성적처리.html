@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성적처리</title>
+    <style>
+        table, th, td
+        {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            padding: 15px;
+        }
+        th, td
+        {
+            width: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3>성적처리</h3>
+    <script>
+        let tableData
+        function score(name, kor, eng, mat)
+        {
+            let sum, avg, grd;
+            let data;
+            sum = kor + eng + mat;
+            avg = Math.round(sum/3);
+            switch (parseInt(avg/10))
+            {
+                case 10 : grd = "A"; break;
+                case 9 : grd = "A"; break;
+                case 8 : grd = "B"; break;
+                case 7 : grd = "C"; break;
+                case 6 : grd = "D"; break;
+                default : grd = "F";
+            }
+            data = `<tr><td>${name}</td><td>${sum}</td><td>${avg}</td><td>${grd}</td></tr>`
+            return data;
+        }
+        console.log(score('고유한', 80, 90, 100));
+
+        tableData = "";
+        tableData += "<table>";
+        tableData += "<tr><th>이름</th><th>총점</th><th>평균</th><th>등급</th></tr>";
+        tableData += score('aaa', 80, 90, 100);
+        tableData += score('bbb', 87, 95, 80);
+        tableData += score('ccc', 51, 43, 61);
+        tableData += score('ddd', 66, 99, 99);
+        tableData += score('eee', 76, 81, 65);
+        tableData += score('fff', 86, 93, 77);
+        tableData += score('ggg', 64, 81, 73);
+        tableData += "</table>";
+        document.write(tableData);
+    </script>
+</body>
+</html>

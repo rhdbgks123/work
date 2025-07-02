@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수</title>
+</head>
+<body>
+    <script>
+        // order("아메리카노", done);
+        function sum(min, max)
+        {
+            let plus = 0;
+            for(let i = min ; i <= max ; i ++)
+            {
+                plus += i;
+            }
+            return plus;
+        }
+        console.log(sum(1, 100));
+        console.log(sum(1, 100));
+
+
+        //콜백함수
+
+        function order(coffee, callback)
+        {
+            console.log(`${coffee} 주문접수`);
+            setTimeout(function()
+                        {
+                            callback(coffee);
+                        }, 3000);
+        }
+        function done (coffee)
+        {
+            console.log(`${coffee} 준비완료`);
+        }
+        order("아메리카노", done);
+        order("라떼", done);
+        order("팥빙수", done);
+
+        //배열의 합
+
+        let nums = [10, 20, 30, 40, 50];
+        let nums2 = [];
+        function fnArrSum(...arr)
+        {
+            let arrSum = 0;
+            for(let i = 0 ; i < arr.length ; i++)
+            {
+                arrSum += parseInt(arr[i]);
+            }
+            return arrSum;
+        }
+        console.log(`배열의 합 : ${fnArrSum(...nums)}`);
+
+
+        //nums2에 start~end까지의 무작위 수 5개를 저장하고 합을 구하세요
+        let start = 20;
+        let end = 60;
+        for(let i = 0; i < 5 ; i ++)
+        {
+            nums2[i] = parseInt(Math.random() * (end - start + 1)) + start;
+        }
+        console.log(nums2);
+        console.log(`nums2의 합 : ${fnArrSum(...nums2)}`);
+        console.log(`nums2의 최대값 = ${fnMax(...nums2)}`);
+        console.log(`nums2의 최소값 = ${fnMin(...nums2)}`);
+
+        var a = 1;
+        var b = 5;
+        function outfunc() 
+        {
+            function innerfunc()
+            {
+                a=b;
+            }
+            console.log(a);
+            a=3;
+            b=4;
+            innerfunc();
+            console.log(a);
+            var b=2; console.log(b);
+        }
+        outfunc();
+        console.log(b);
+
+        //최대값 계산함수
+        function fnMax(...arr)
+        {
+            let iMax = arr[0];
+            for(let i = 1 ; i < arr.length ; i++)
+            {
+                if(iMax < arr[i])
+                {
+                    iMax = arr[i];
+                }
+            }
+            return iMax;
+        }
+
+        //최소값 계산함수
+        function fnMin(...arr)
+        {
+            let iMin = arr[0];
+            for(let i = 1 ; i < arr.length ; i++)
+            {
+                if(iMin > arr[i])
+                {
+                    iMin = arr[i];
+                }
+            }
+            return iMin;
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트</title>
+    <style>
+        img
+        {
+            width: 300px;
+        }
+        button
+        {
+            display: block;
+        }
+        #desc
+        {
+            width: 300px;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <h3>상세설명 보기/닫기</h3>
+    <img src="/html/img/레드향.jpg" alt="">
+    <!-- <button type = "button" id="showbutton" onclick="fnshow()">상세설명 보기</button> -->
+    <button type = "button" id="showbutton"">상세설명 보기</button>
+    <div id="desc">
+        <h3>레드향</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Iure qui culpa impedit ea ex nisi accusantium harum fuga quisquam,
+            quasi quam exercitationem omnis, eligendi necessitatibus dolorum sint. Natus, tempora rem!</p>
+        <!-- <button type = "button" id="closebutton" onclick="fnclose()">상세설명 닫기</button> -->
+        <button type = "button" id="closebutton" ">상세설명 닫기</button>
+    </div>
+    <script>
+        let btnshow = document.querySelector("#showbutton");
+        let btnclose = document.querySelector("#closebutton");
+        let sDesc = document.querySelector("#desc");
+
+        btnshow.onclick = fnshow;
+        btnclose.onclick = fnclose;
+        function fnshow()
+        {
+            sDesc.style.display = 'block';
+            btnshow.style.display = 'none';
+        }
+        function fnclose()
+        {
+            sDesc.style.display = 'none';
+            btnshow.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
