@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <h1>자바</h1>
+        <h1>자바스크립트</h1>
+        <h1>노드</h1>
+        <h1>뷰</h1>
+    <script>
+        let score = [90,100,40,100];
+        
+        let subject = document.querySelectorAll("h1")
+        console.log(score);
+        for(let i = 0 ; i < score.length ; i++)
+        {
+            console.log(`index : ${i} => element : ${score[i]}`);
+        }
+        
+        for(let idx in score)
+        {
+            console.log(`index : ${idx} => ele : ${score[idx]}`);
+        }
+
+        for(const elem of score)
+        {
+            console.log(elem);
+        }
+
+        let colors = ['주황', '노랑', '초록'];
+
+        colors.forEach((ele, idx) =>
+            {
+                console.log(`index : ${idx}, element : ${ele}`);  
+            }
+        )
+
+        console.log(colors);
+        colors.push('파랑');
+        console.log(colors);
+        colors.unshift('빨강');
+        console.log(colors);
+        colors.pop();
+        colors.pop();
+        console.log(colors);
+        colors.shift();
+        console.log(colors);
+        colors.splice(1,0,'초록', '파랑', '남색');
+        console.log(colors);
+        colors.splice(4,1);
+        console.log(colors);
+        console.log(colors.lastIndexOf('초록'));
+        console.log(colors);
+        console.log(colors.indexOf('초록'));
+        // console.log(colors);
+        // colors.splice(1,1);
+        console.log(colors);
+        if(colors.indexOf('보라') == -1)
+        {
+            colors.push('보라');
+        }
+        console.log(colors);
+
+        let score2 = [];
+        score2 = 
+        score.map(function(ele)
+            {
+                return ele + 100;
+            }
+        );
+        // 위 아래 같이 사용 가능 화살표는 익명함수
+        score2 = score.map((ele) => parseInt(ele * 1.1));
+
+        console.log(score);
+        console.log(score2);
+        
+        let filterArr;
+        filterArr = 
+        score2.filter(function(ele, idx)
+            {
+                return ele < 100;
+            }    
+        )
+        console.log(filterArr);
+
+        
+        let reducearr = score.reduce((pre, curr) =>
+        { 
+            console.log(pre + ' : '+ curr); 
+            return pre + curr; 
+        }) 
+        console.log(reducearr); 
+
+        console.log(colors.sort());
+        console.log(score2.sort((a,b) => a-b));
+        
+    </script>
+</body>
+</html>

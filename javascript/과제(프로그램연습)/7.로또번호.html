@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또번호</title>
+    <style>
+        #container{
+            width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        #lotto{
+            background: rgb(139, 207, 206);
+            padding: 10px;
+            margin: 10px;
+        }
+        button{
+            border-radius: 20px;
+            font-weight: bold;
+            padding: 15px 20px;
+            background: rgb(163, 202, 188);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>로또 번호 발생기</h1>
+        <button type="button" id="btn">클릭</button>
+        <div id="lotto"></div>
+    </div>
+    <script>
+        let autoBtn = document.querySelector('#btn');
+        let divLotto = document.querySelector('#lotto');
+        autoBtn.onclick = lottoM;
+        
+        function lottoM()
+        {
+            let lotto = "";
+            let randomNum;
+            for(let j = 0 ; j <5 ; j++ )
+            {
+                lotto += '<p>';
+                for(let i = 0 ; i < 6 ; i++)
+                {
+                    randomNum = parseInt(Math.random() * 45 + 1);
+                    if(lotto.indexOf(randomNum) == -1)
+                        lotto += randomNum + "\t";
+                    else
+                        i--;
+
+                }
+                lotto += "\n";
+                lotto += '</p>';
+            }
+            divLotto.innerHTML=lotto;
+        }
+    </script>
+</body>
+</html>

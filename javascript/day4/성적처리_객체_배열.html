@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성적처리</title>
+    <style>
+        table, th, td
+        {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            padding: 15px;
+        }
+        th, td
+        {
+            width: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3>성적처리</h3>
+    <script>
+        function Student(name, kor, eng, mat, art)
+        {
+            this.name = name;
+            this.kor = kor;
+            this.eng = eng;
+            this.mat = mat;
+            this.art = art;
+            
+        }
+        Student.prototype.getSum= (() => this.kor + this.eng + this.mat + this.art);
+        Student.prototype.getAvg = (() => this.kor + this.eng + this.mat + this.art / 4);
+        Student.prototype.toResult = (() => `${this.name} \t ${Student.getSum()} \t ${Student.getAvg()}`);
+        
+        let stuArr = [];
+        stuArr.push(new Student('홍길동',96,98,92,98));
+        stuArr.push(new Student('성춘향',88,74,78,92));
+        stuArr.push(new Student('이몽룡',69,89,92,78));
+        stuArr.push(new Student('임영웅',97,95,89,98));
+        stuArr.push(new Student('성유리',66,80,92,94));
+        console.log(stuArr);
+        let stuOutput = [];
+
+        for(let i = 0 ; i < stuArr.length ; i ++)
+        {
+            stuOutput.push(stuArr[i].name, stuArr[i].getSum(), stuArr[i].getAvg());
+        }
+        console.log(stuOutput);
+        let tableData;
+
+        // console.log(score('고유한', 80, 90, 100));
+
+        // tableData = "";
+        // tableData += "<table>";
+        // tableData += "<tr><th>이름</th><th>총점</th><th>평균</th><th>등급</th></tr>";
+        // tableData += score('aaa', 80, 90, 100);
+        // tableData += score('bbb', 87, 95, 80);
+        // tableData += score('ccc', 51, 43, 61);
+        // tableData += score('ddd', 66, 99, 99);
+        // tableData += score('eee', 76, 81, 65);
+        // tableData += score('fff', 86, 93, 77);
+        // tableData += score('ggg', 64, 81, 73);
+        // tableData += "</table>";
+        // document.write(tableData);
+    </script>
+</body>
+</html>

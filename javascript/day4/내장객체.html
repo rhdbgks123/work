@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내장객체</title>
+</head>
+<body>
+    <script>
+        //날짜객체
+        let today = new Date();
+        console.log(today);
+        let year = today.getFullYear();
+        console.log(year);
+        let month = today.getMonth() + 1;
+        let date = today.getDate();
+        let day = "";
+        switch(today.getDay()){
+            case 0 : day = "일"; break;
+            case 1 : day = "월"; break;
+            case 2 : day = "화"; break;
+            case 3 : day = "수"; break;
+            case 4 : day = "목"; break;
+            case 5 : day = "금"; break;
+            default : day = "토"; break;
+        }
+        console.log(`${year}년 ${month}월 ${date}일 ${day}요일`)
+        console.log(new Date(1));
+        console.log(today.getTime());
+        console.log(new Date(1751515513842));
+        console.log(today.toLocaleString());
+
+        //크리스마스까지 남은 시간
+        let xmas = new Date("2025-12-25");
+        let remain = parseInt((xmas - today) / 1000 / 60 / 60 / 24);
+        console.log(remain + '일');
+
+        //로또 자동 발생기 1~45
+        let lotto = [];
+        let randomNum;
+        for(let j = 0 ; j <5 ; j++ )
+        {
+            for(let i = 0 ; i < 6 ; i++)
+            {
+                randomNum = parseInt(Math.random() * 45 + 1);
+                if(lotto.indexOf(randomNum) == -1)
+                    lotto[i] = randomNum;
+                else
+                    i--;
+
+            }
+            console.log(lotto);
+        }
+
+    </script>
+</body>
+</html>
