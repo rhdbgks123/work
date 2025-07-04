@@ -4,12 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>성적입력</title>
+    <style>
+        #container
+        {
+            width: 600px;
+            margin: 0 auto;
+        }
+        h1
+        {
+            text-align: left;
+        }
+        table, th, td
+        {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            padding: 5px;
+            text-align: center;
+        }
+        th, td
+        {
+            width: 50px;
+        }
+        #input li
+        {
+            margin: 10px;
+            list-style-type: none;
+            
+        }
+        #input li label
+        {
+            width: 60px;
+            display: inline-block;
+        }
+        button
+        {
+            width: 250px;
+            height: 40px;
+        }
+        caption
+        {
+            font-size: 80px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
+    <div id="container">
     <h1>성적입력</h1>
-    <ul>
-        <li><label for="uname">이름</label> <input type="text" name="uname" id="uname"></li>
-        <li><label for="kor">국어</label> <input type="text" name="kor" id="kor"></li>
+    <ul id="input">
+        <li><label for="uname">이름</label><input type="text" name="uname" id="uname"></li>
+        <li><label for="kor">국어</label><input type="text" name="kor" id="kor"></li>
         <li><label for="eng">영어</label><input type="text" name="eng" id="eng"></li>
         <li><label for="mat">수학</label><input type="text" name="mat" id="mat"></li>
         <li><button type="button" id = "add">추가</button></li>
@@ -29,16 +73,16 @@
 
         function sungAdd()
         {
+            //입력 데이터
             let txtName = objUname.value;
             let nKor = parseInt(objKor.value);
             let nEng = parseInt(objEng.value);
             let nMat = parseInt(objMat.value);
             let nSumScore = nKor + nEng + nMat;
-            let nAvgScore = nSumScore / 3;
+            let nAvgScore = Math.round((nSumScore / 3) * 100) / 100;
             let txtGrade = "";
             let txtSheet = "";
             let nRank = 0;
-            
             switch(parseInt(nAvgScore/10))
             {
                 case 10 :
@@ -49,31 +93,28 @@
                 default : txtGrade = "가"; break;
             }
 
-            function Person(name, kor, eng, mat, sumscore, avgscore, grade, rank)
-            {
-                this.name = name;
-                this.kor = kor;
-                this.eng = eng;
-                this.mat = mat;
-                this.sumscore = sumscore;
-                this.avgscore = avgscore;
-                this.grade = grade;
-                this.rank = rank;
-            };
-
+            //배열에 데이터 push
             arrPerson.push(new Person(txtName, nKor, nEng, nMat, nSumScore, nAvgScore, txtGrade, 0));
+
+            //sub 배열에 데이터 copy
             let arrPersonSub = arrPerson.map((el)=>el);
             arrPersonSub.sort((a,b) => b.sumscore - a.sumscore);
-            console.log(arrPerson);
-            console.log(arrPersonSub);
+            let curSumscore = 0;
+            let prevSumscore = 0;
             
+            //sub 배열에 랭크정보 입력
             for(let i = 0 ; i < arrPersonSub.length ; i++)
             {
-                if(arrPersonSub[i - 1] ==arrPersonSub[i])
+                curSumscore = arrPersonSub[i].sumscore;
+
+                if(prevSumscore == curSumscore)
                     arrPersonSub[i].rank = i;
                 else
                     arrPersonSub[i].rank = i + 1;
+                prevSumscore = curSumscore;
             }
+            
+            //sub배열 랭크정보 본 배열에 이관
             for(let i = 0; i < arrPerson.length ; i ++)
             {
                 for(let j = 0 ; j < arrPersonSub.length; j ++)
@@ -86,14 +127,17 @@
                         arrPerson[i].rank = arrPersonSub[j].rank;
                 }
             }
-
-            txtSheet = "<table>";
+            fnDisplay();
+        }
+        function fnDisplay()
+        {
+            txtSheet = "<table><caption>성적표</caption>";
             txtSheet += "<tr><th>번호</th><th>이름</th><th>국어</th><th>영어</th><th>수학</th><th>총점</th><th>평균</th><th>등급</th><th>석차</th></tr>";
             for(let i = 0 ; i < arrPerson.length ; i ++)
             {
                 txtSheet += `<tr><td>${i+1}</td><td>${arrPerson[i].name}</td><td>${arrPerson[i].kor}</td>
                             <td>${arrPerson[i].eng}</td><td>${arrPerson[i].mat}</td><td>${arrPerson[i].sumscore}</td>
-                            <td>${arrPerson[i].avgscore}</td><td>${arrPerson[i].grade}</td><td>${i+1}</td></tr>`
+                            <td>${arrPerson[i].avgscore}</td><td>${arrPerson[i].grade}</td><td>${arrPerson[i].rank}</td></tr>`
             }
             document.querySelector("#sunjuck").innerHTML = txtSheet;
             objUname.value ='';
@@ -101,9 +145,20 @@
             objEng.value ='';
             objMat.value ='';
         }
-
+        function Person(name, kor, eng, mat, sumscore, avgscore, grade, rank)
+        {
+            this.name = name;
+            this.kor = kor;
+            this.eng = eng;
+            this.mat = mat;
+            this.sumscore = sumscore;
+            this.avgscore = avgscore;
+            this.grade = grade;
+            this.rank = rank;
+        };
 
         
     </script>
+    </div>
 </body>
 </html>
