@@ -27,9 +27,43 @@
         <input type="text" id="colNum" name="colNum" size="5">
         <button type="button" id="btn">배치도</button>
     </form>
-    <div id="layout"></div>
+    <div id="layout">
+    </div>
 
     <script>
+        let objTotal = document.querySelector("#person");
+        let objCol = document.querySelector("#colNum");
+        let btnBtn = document.querySelector("#btn");
+
+        btnBtn.onclick = sheet;
+
+        function sheet()
+        {
+            let totalCnt = parseInt(objTotal.value);
+            let colCnt = parseInt(objCol.value);
+            let rowCnt = 0;
+            let sheetCnt = 0;
+            let txtLayout = "";
+
+            rowCnt = Math.ceil(totalCnt/colCnt);
+
+            txtLayout = `<table>`;
+            for(let i = 0 ; i < rowCnt ; i++)
+            {
+                txtLayout+= `<tr>`;
+                for(let j = 0 ; j < colCnt  ; j++)
+                {
+                    sheetCnt++;
+                    if(sheetCnt > totalCnt)
+                        break;
+                    txtLayout += `<td>좌석${sheetCnt}</td>`
+                    
+                }
+                txtLayout += `</tr>`;
+            }
+            txtLayout += `</table>`;
+            document.querySelector("#layout").innerHTML = txtLayout;
+        }
         
     </script>
 </body>

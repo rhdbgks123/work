@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성적입력</title>
+</head>
+<body>
+    <h1>성적입력</h1>
+    <ul>
+        <li><label for="uname">이름</label> <input type="text" name="uname" id="uname"></li>
+        <li><label for="kor">국어</label> <input type="text" name="kor" id="kor"></li>
+        <li><label for="eng">영어</label><input type="text" name="eng" id="eng"></li>
+        <li><label for="mat">수학</label><input type="text" name="mat" id="mat"></li>
+        <li><button type="button" id = "add">추가</button></li>
+    </ul>
+    <div id = "sunjuck"></div>
+    <script>
+        let objUname = document.querySelector("#uname");
+        let objKor = document.querySelector("#kor");
+        let objEng = document.querySelector("#eng");
+        let objMat = document.querySelector("#mat");
+        let btnAdd = document.querySelector("#add");
+        let arrPerson = [];
+        let arrPersonSub = [];
+            
+
+        btnAdd.onclick = sungAdd;
+
+        function sungAdd()
+        {
+            let txtName = objUname.value;
+            let nKor = parseInt(objKor.value);
+            let nEng = parseInt(objEng.value);
+            let nMat = parseInt(objMat.value);
+            let nSumScore = nKor + nEng + nMat;
+            let nAvgScore = nSumScore / 3;
+            let txtGrade = "";
+            let txtSheet = "";
+            let nRank = 0;
+            
+            switch(parseInt(nAvgScore/10))
+            {
+                case 10 :
+                case 9 : txtGrade = "수"; break;
+                case 8 : txtGrade = "우"; break;
+                case 7 : txtGrade = "미"; break;
+                case 6 : txtGrade = "양"; break;
+                default : txtGrade = "가"; break;
+            }
+
+            function Person(name, kor, eng, mat, sumscore, avgscore, grade, rank)
+            {
+                this.name = name;
+                this.kor = kor;
+                this.eng = eng;
+                this.mat = mat;
+                this.sumscore = sumscore;
+                this.avgscore = avgscore;
+                this.grade = grade;
+                this.rank = rank;
+            };
+
+            arrPerson.push(new Person(txtName, nKor, nEng, nMat, nSumScore, nAvgScore, txtGrade, 0));
+            let arrPersonSub = arrPerson.map((el)=>el);
+            arrPersonSub.sort((a,b) => b.sumscore - a.sumscore);
+            console.log(arrPerson);
+            console.log(arrPersonSub);
+            
+            for(let i = 0 ; i < arrPersonSub.length ; i++)
+            {
+                if(arrPersonSub[i - 1] ==arrPersonSub[i])
+                    arrPersonSub[i].rank = i;
+                else
+                    arrPersonSub[i].rank = i + 1;
+            }
+            for(let i = 0; i < arrPerson.length ; i ++)
+            {
+                for(let j = 0 ; j < arrPersonSub.length; j ++)
+                {
+                    if (arrPerson[i].name == arrPersonSub[j].name 
+                        && arrPerson[i].kor == arrPersonSub[j].kor 
+                        && arrPerson[i].eng == arrPersonSub[j].eng 
+                        && arrPerson[i].mat == arrPersonSub[j].mat
+                    )
+                        arrPerson[i].rank = arrPersonSub[j].rank;
+                }
+            }
+
+            txtSheet = "<table>";
+            txtSheet += "<tr><th>번호</th><th>이름</th><th>국어</th><th>영어</th><th>수학</th><th>총점</th><th>평균</th><th>등급</th><th>석차</th></tr>";
+            for(let i = 0 ; i < arrPerson.length ; i ++)
+            {
+                txtSheet += `<tr><td>${i+1}</td><td>${arrPerson[i].name}</td><td>${arrPerson[i].kor}</td>
+                            <td>${arrPerson[i].eng}</td><td>${arrPerson[i].mat}</td><td>${arrPerson[i].sumscore}</td>
+                            <td>${arrPerson[i].avgscore}</td><td>${arrPerson[i].grade}</td><td>${i+1}</td></tr>`
+            }
+            document.querySelector("#sunjuck").innerHTML = txtSheet;
+            objUname.value ='';
+            objKor.value ='';
+            objEng.value ='';
+            objMat.value ='';
+        }
+
+
+        
+    </script>
+</body>
+</html>

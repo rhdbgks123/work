@@ -42,7 +42,34 @@
   </div>
 
   <script>
-   
+    let objCol = document.querySelector("#cCount");
+    let objRow = document.querySelector("#rCount");
+    let btnBtn = document.querySelector("#btn");
+    btnBtn.onclick = draw;
+
+    function draw()
+    {
+      let colCount = parseInt(objCol.value);
+      let rowCount = parseInt(objRow.value);
+      let layout = "";
+
+      layout += `<table>`;
+      for(let i = 0; i < rowCount ; i++)
+      {
+        layout += `<tr>`;
+        for(let j = 0 ; j < colCount ; j++)
+        {
+          layout += `<td></td>`;
+        }
+        layout += `</tr>`;
+      }
+      layout += `</table>`;
+      
+      document.querySelector("#contents").innerHTML = layout;
+    }
+
+    
+
   </script>
 </body>
 </html>

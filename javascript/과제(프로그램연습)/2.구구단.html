@@ -14,6 +14,21 @@
 
     <script>
         // 출력 버튼이 클릭되면 입력된 단만 출력
+        let btnCal = document.querySelector("#btn");
+        btnCal.onclick = guguCal;
+
+        function guguCal()
+        {
+            let output = "";
+            let numDan = parseInt(document.querySelector("#dan").value);
+            for(let i = 1 ; i < 10 ; i ++)
+            {
+                output += `${numDan} X ${i} = ${numDan*i}<br>`;
+            }
+            document.querySelector("#result").innerHTML = output;
+            document.querySelector("#dan").value ='';
+            document.querySelector("#dan").focus();
+        }
     </script>
 </body>
 </html>
