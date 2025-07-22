@@ -297,7 +297,7 @@ public class Main {
 //				        {
 //							dateFormat.parse(orderdate);
 //						} 
-//				        catch (ParseException e)
+//				        catch (Exception e)
 //				        {
 //							System.out.println("날짜형식 오류");
 //							break;
@@ -305,7 +305,7 @@ public class Main {
 //						if (orderdate == null || orderdate.length() != 6) {
 //					            System.out.println("날짜형식 오류");
 //					            break;
-//					        }
+//					    }
 						ArrayList<Orders> orders = ordersdao.findOrder("",orderdate);
 						if(orders.size() < 1)
 						{
@@ -327,10 +327,12 @@ public class Main {
 							break;
 						}
 					}
+					
 					break;
+					
 				default : System.out.println("종료"); run = false; break;
 			}
 		}
-		
+		//commit test
 	}
 }
