@@ -40,17 +40,21 @@ function show()
     list += `</ul>`;
 
     document.querySelector("#bookList").innerHTML = list;
+    
+    
+    test(list);
 
-    let delList = document.querySelectorAll(".del");
+}
+
+function test( delList)
+{
+    // let delList = document.querySelectorAll(".del");
     // console.log(delList);
     for(let ele of delList)
     {
         ele.onclick = remove;
     }
 }
-
-
-
 // 문서에 도서 목록 삭제
 function remove(){
     let delNum = this.getAttribute('id');
