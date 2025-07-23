@@ -14,7 +14,7 @@ public class UserDao
 
 	String sSql = "";
 	private Connection conn = DBUtil.getConn();;
-
+	//branch_test
 	public boolean userInsert(User user)
 	{
 		sSql = "";
