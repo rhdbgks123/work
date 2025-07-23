@@ -9,11 +9,11 @@ import java.util.ArrayList;
 
 import com.yedam.app.DBUtil;
 
-public class OrdersDao {
+public class OrdersDao
+{
 
 	String sSql = "";
-	Connection conn  = DBUtil.getConn();
-
+	Connection conn = DBUtil.getConn();
 
 	public boolean updateOrders(String ordno)
 	{
@@ -21,29 +21,32 @@ public class OrdersDao {
 		sSql += " UPDATE tb_orders ";
 		sSql += "    SET status = 9 ";
 		sSql += "  WHERE order_no = ? ";
-		
+
 		try
 		{
 			PreparedStatement stmt = conn.prepareStatement(sSql);
 			stmt.setString(1, ordno);
-			
+
 			int r = stmt.executeUpdate();
-			if(r > 0) 
+
+			if (r > 0)
 			{
 				return true;
 			}
-		} catch(SQLException e)
+		}
+		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
 		return false;
-		
 
 	}
-	
+
 	public boolean insertOrders(String order_no, String user_id)
 	{
-		try {
+
+		try
+		{
 			sSql = "";
 			sSql += " INSERT INTO tb_orders ( ";
 			sSql += "     order_no ";
@@ -56,33 +59,38 @@ public class OrdersDao {
 			sSql += " ) ";
 
 			PreparedStatement stmt = conn.prepareStatement(sSql);
-			stmt.setString(1, order_no);  //? 첫번째에 값을 지정
-			stmt.setString(2, user_id);  //? 첫번째에 값을 지정
-			
-			int r = stmt.executeUpdate();   //실행된 쿼리의 결과 count반환
-			if(r < 1)   
-			{	
+			stmt.setString(1, order_no); // ? 첫번째에 값을 지정
+			stmt.setString(2, user_id); // ? 첫번째에 값을 지정
+
+			int r = stmt.executeUpdate(); // 실행된 쿼리의 결과 count반환
+
+			if (r < 1)
+			{
 				conn.rollback();
 				return false;
 			}
-			
-		} catch (SQLException e) {
+
+		}
+		catch (SQLException e)
+		{
 			e.printStackTrace();
 		}
 		return true;
-		
+
 	}
+
 	public boolean insertOrderdetail(ArrayList<Orders> list)
 	{
-		try 
-		{	
-//			for (int i = 0; i < list.size(); i++) {
-//			    System.out.println("Order No: " + list.get(i).getOrder_no());
-//			    System.out.println("Item Code: " + list.get(i).getItem_code());
-//			    System.out.println("Item Qty: " + list.get(i).getItem_qty());
-//			}
-			
-			for(int i = 0 ; i < list.size() ; i ++)
+
+		try
+		{
+			// for (int i = 0; i < list.size(); i++) {
+			// System.out.println("Order No: " + list.get(i).getOrder_no());
+			// System.out.println("Item Code: " + list.get(i).getItem_code());
+			// System.out.println("Item Qty: " + list.get(i).getItem_qty());
+			// }
+
+			for (int i = 0 ; i < list.size() ; i++)
 			{
 				sSql = "";
 				sSql += " INSERT INTO tb_orderdetail ( ";
@@ -96,36 +104,39 @@ public class OrdersDao {
 				sSql += "   , ? ";
 				sSql += "   , ? ";
 				sSql += " ) ";
-				
-				
+
 				PreparedStatement stmt = conn.prepareStatement(sSql);
-				stmt.setString(1, list.get(i).getOrder_no());  //? 첫번째에 값을 지정
+				stmt.setString(1, list.get(i).getOrder_no()); // ? 첫번째에 값을 지정
 				stmt.setString(2, getOrderdetailSeq());
 				stmt.setString(3, list.get(i).getItem_code());
 				stmt.setInt(4, list.get(i).getItem_qty());
-				
-				int r = stmt.executeUpdate();   //실행된 쿼리의 결과 count반환
-				if(r < 1)   
-				{	
+
+				int r = stmt.executeUpdate(); // 실행된 쿼리의 결과 count반환
+
+				if (r < 1)
+				{
 					conn.rollback();
 					return false;
 				}
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 		return true;
 	}
-	
+
 	public ArrayList<Orders> findOrder(String order_no, String order_date)
 	{
 		ArrayList<Orders> list = null;
 		ResultSet rs = null;
-		try 
+
+		try
 		{
 			list = new ArrayList<Orders>();
 			Statement stmt = conn.createStatement();
-			
+
 			sSql = "";
 			sSql += " SELECT usr.user_name ";
 			sSql += "      , itm.item_name ";
@@ -141,16 +152,17 @@ public class OrdersDao {
 			sSql += "     ON odd.item_code = itm.item_code ";
 			sSql += "  WHERE 1=1";
 			sSql += "    AND ord.status != 9 ";
-			
-			if(order_no != null && order_no != "")
+
+			if (order_no != null && order_no != "")
 				sSql += "   AND ord.order_no like '%" + order_no + "%' ";
 
-			if(order_date != null && order_date != "")
+			if (order_date != null && order_date != "")
 				sSql += "   AND ord.order_date = to_date('" + order_date + "', 'YYMMDD')";
-			
+
 			rs = stmt.executeQuery(sSql);
-			
-			while(rs.next()) {
+
+			while (rs.next())
+			{
 				Orders order = new Orders();
 				order.setUser_name(rs.getString("user_name"));
 				order.setItem_name(rs.getString("item_name"));
@@ -159,118 +171,123 @@ public class OrdersDao {
 				order.setAddress(rs.getString("address"));
 				list.add(order);
 			}
-			
-			
-		} 
-		
-		catch(Exception e) 
+
+		}
+
+		catch (Exception e)
 		{
 			System.out.println(e.getMessage());
 		}
-		
+
 		return list;
 	}
 
 	public boolean checkOrders(String ordno)
 	{
-		try 
+
+		try
 		{
 			Statement stmt = conn.createStatement();
-			
+
 			sSql = "";
 			sSql += " SELECT count(1) ";
 			sSql += "   FROM tb_orders ";
 			sSql += "  WHERE order_no = '" + ordno + "' ";
 			sSql += "    AND status != 9 ";
-			
+
 			ResultSet rs = stmt.executeQuery(sSql);
 			rs.next();
-			if(rs.getInt(1) > 0)
+			if (rs.getInt(1) > 0)
 				return true;
-		} 
-		
-		catch(Exception e) 
+		}
+
+		catch (Exception e)
 		{
 			System.out.println(e.getMessage());
 		}
-		
+
 		return false;
 	}
-	
+
 	public String getOrderSeq()
 	{
 		String seq = "";
 
-		try 
+		try
 		{
 			Statement stmt = conn.createStatement();
-			
-			ResultSet rs = stmt.executeQuery("select 'WO' || to_char(sysdate,'YYMMDD') || lpad(order_seq.nextval, 5, 0) seq from dual");
-			while(rs.next())
+
+			ResultSet rs = stmt.executeQuery(
+					"select 'WO' || to_char(sysdate,'YYMMDD') || lpad(order_seq.nextval, 5, 0) seq from dual");
+
+			while (rs.next())
 			{
 				seq = rs.getString("seq");
 			}
-			
-		} 
+
+		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
-		
+
 		return seq;
 	}
 
 	public void createOrderdetailSeq()
 	{
-		try 
+
+		try
 		{
 			Statement stmt = conn.createStatement();
-			
+
 			stmt.executeUpdate("create sequence orderdetail_seq");
-			
-		} 
+
+		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
 	}
+
 	public void dropOrderdetailSeq()
 	{
-		try 
+
+		try
 		{
 			Statement stmt = conn.createStatement();
-			
+
 			stmt.executeUpdate("drop sequence orderdetail_seq");
-			
-		} 
+
+		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
 	}
+
 	public String getOrderdetailSeq()
 	{
 		String seq = "";
 
-		try 
+		try
 		{
 			Statement stmt = conn.createStatement();
-			
+
 			ResultSet rs = stmt.executeQuery("select orderdetail_seq.nextval seq from dual");
-			while(rs.next())
+
+			while (rs.next())
 			{
 				seq = rs.getString("seq");
 			}
-			
-		} 
+
+		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
-		
+
 		return seq;
 	}
-	
-	
-	
+
 }
