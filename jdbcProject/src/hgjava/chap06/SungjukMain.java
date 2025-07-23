@@ -45,7 +45,7 @@ public class SungjukMain {
 			
 		}
 		
-		
+		sc.close();
 		
 		
 		
