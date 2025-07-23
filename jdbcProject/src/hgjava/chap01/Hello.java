@@ -1,4 +1,4 @@
-package chap01;
+package hgjava.chap01;
 
 public class Hello {
 

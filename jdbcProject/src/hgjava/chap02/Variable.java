@@ -1,4 +1,4 @@
-package chap02;
+package hgjava.chap02;
 
 public class Variable {
 

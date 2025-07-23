@@ -1,4 +1,4 @@
-package 고유한;
+package hgjava.고유한;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package chap03;
+package hgjava.chap03;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package chap04;
+package hgjava.chap04;
 
 
 public class Student_dao {

@@ -1,4 +1,4 @@
-package chap04;
+package hgjava.chap04;
 
 public class Ex182 {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package chap05;
+package hgjava.chap05;
 
 public class ExamArr {
 
