@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DBUtil {
 	//DB 접속정보 활용 -> 세션(Connection)
 	//ojdbc11.jar 외부 라이브러리 참조
-	public Connection getConn()
+	public static Connection getConn()
 	{
 		Connection conn = null;
 		try {

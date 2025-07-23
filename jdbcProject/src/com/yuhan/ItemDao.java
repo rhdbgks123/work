@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.yedam.app.DBUtil;
-
 public class ItemDao
 {
 	String sSql = "";

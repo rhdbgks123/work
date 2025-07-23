@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DBUtil {
+class DBUtil {
 	//DB 접속정보 활용 -> 세션(Connection)
 	//ojdbc11.jar 외부 라이브러리 참조
-	public static Connection getConn()
+	public Connection getConn()
 	{
 		Connection conn = null;
 		try {
