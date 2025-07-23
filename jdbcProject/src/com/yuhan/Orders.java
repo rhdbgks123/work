@@ -14,6 +14,9 @@ public class Orders
 	private String item_name;
 	private String phone;
 	private String address;
+	private String touser;
+	private String toaddress;
+	private String tophone;
 
 	public String getOrder_no()
 	{
@@ -123,6 +126,36 @@ public class Orders
 	public void setAddress(String address)
 	{
 		this.address = address;
+	}
+
+	public String getTouser()
+	{
+		return touser;
+	}
+
+	public void setTouser(String touser)
+	{
+		this.touser = touser;
+	}
+
+	public String getToaddress()
+	{
+		return toaddress;
+	}
+
+	public void setToaddress(String toaddress)
+	{
+		this.toaddress = toaddress;
+	}
+
+	public String getTophone()
+	{
+		return tophone;
+	}
+
+	public void setTophone(String tophone)
+	{
+		this.tophone = tophone;
 	}
 
 }

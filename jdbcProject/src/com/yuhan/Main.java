@@ -24,6 +24,7 @@ public class Main
 		Orders order = new Orders();
 		String item_code = "";
 		String user_name = "";
+		boolean concheck = true;
 
 		while (run)
 		{
@@ -137,6 +138,8 @@ public class Main
 
 								System.out.print("주소 > ");
 								user.setAddress(sc.nextLine());
+								System.out.print("EMAIL > ");
+								user.setEmail(sc.nextLine());
 								if (!userdao.userInsert(user))
 								{
 									System.out.println("사용자 등록 실패");
@@ -158,13 +161,13 @@ public class Main
 								}
 								else
 								{
-									System.out.println("\t사용자번호\t||\t사용자이름\t||\t전화번호\t\t||\t주소\t");
+									System.out.println("\t사용자번호\t\t||\t사용자이름\t\t||\t전화번호\t\t||\tEMAIL\t\t\t||\t주소\t");
 
 									for (int i = 0 ; i < users.size() ; i++)
 									{
-										System.out.printf("\t%s\t\t||\t%s\t\t||\t%s\t||\t%s\t\n", users.get(i)
+										System.out.printf("\t%s\t\t||\t%s\t\t||\t%s\t||\t%s\t||\t%s\t\n", users.get(i)
 												.getUser_id(), users.get(i).getUser_name(), users.get(i).getPhone(),
-												users.get(i).getAddress());
+												users.get(i).getEmail(), users.get(i).getAddress());
 									}
 									break;
 								}
@@ -180,6 +183,7 @@ public class Main
 				case 3 :
 					while (run2)
 					{
+						String regEx = "^\\d{3}-\\d{4}-\\d{4}$";
 						System.out.println("---------------------------------------------------");
 						System.out.println("1. 주문정보 등록 | 2. 주문정보 조회 | 9. 상위메뉴");
 						System.out.println("---------------------------------------------------");
@@ -191,14 +195,32 @@ public class Main
 							case 1 :
 								String ordno = ordersdao.getOrderSeq();
 								ArrayList<Orders> list = new ArrayList<Orders>();
-								System.out.print("사용자번호 > ");
+								System.out.print("담당자ID > ");
 								String userid = sc.nextLine();
 								if (!userdao.checkUser(userid))
 								{
 									System.out.println("해당 사용자는 존재하지 않습니다.");
 									continue;
 								}
+								System.out.print("주문자 > ");
+								String touser = sc.nextLine();
 
+								System.out.print("주문자 주소 > ");
+								String toaddress = sc.nextLine();
+
+								System.out.print("주문자 전화번호 > ");
+								String tophone = sc.nextLine();
+								if (!Pattern.matches(regEx, tophone))
+								{
+									System.out.println("올바른 휴대전화 형식이 아닙니다. ");
+									break;
+								}
+								else
+								{
+									tophone = tophone.replace("-", "");
+								}
+								
+								
 								while (true)
 								{
 									order = new Orders();
@@ -221,6 +243,9 @@ public class Main
 									order.setItem_code(itemcd);
 									order.setItem_qty(itemqty);
 									order.setOrder_no(ordno);
+									order.setTouser(touser);
+									order.setToaddress(toaddress);
+									order.setTophone(tophone);
 									order.setUser_id(userid);
 									list.add(order);
 								}
@@ -228,11 +253,28 @@ public class Main
 								{
 									ordersdao.createOrderdetailSeq();
 									ordersdao.conn.setAutoCommit(false);
-									ordersdao.insertOrderdetail(list);
-									ordersdao.insertOrders(ordno, userid);
+
+									if (!ordersdao.insertOrderdetail(list))
+									{
+										concheck = false;
+									}
+									if (!ordersdao.insertOrders(ordno, userid, touser, toaddress, tophone))
+									{
+										concheck = false;
+									}
+
+									if (concheck)
+									{
+										ordersdao.conn.commit();
+										System.out.println("주문번호 : " + ordno + " 등록 완료");
+									}
+									else
+									{
+										ordersdao.conn.rollback();
+										System.out.println("주문 등록 실패");
+									}
 									ordersdao.dropOrderdetailSeq();
-									ordersdao.conn.commit();
-									System.out.println("주문번호 : " + ordno + " 등록 완료");
+
 								}
 								catch (SQLException e)
 								{
@@ -347,7 +389,8 @@ public class Main
 					}
 
 					break;
-
+				case 6 :
+					 MailSender.send(ordersdao.getLastOrders(), ordersdao.getUserEmail());
 				default :
 					System.out.println("종료");
 					run = false;

@@ -6,6 +6,7 @@ public class User
 	private String user_name;
 	private String phone;
 	private String address;
+	private String email;
 
 	public String getUser_id()
 	{
@@ -45,6 +46,16 @@ public class User
 	public void setAddress(String address)
 	{
 		this.address = address;
+	}
+
+	public String getEmail()
+	{
+		return email;
+	}
+
+	public void setEmail(String email)
+	{
+		this.email = email;
 	}
 
 }

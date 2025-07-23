@@ -41,31 +41,40 @@ public class OrdersDao
 
 	}
 
-	public boolean insertOrders(String order_no, String user_id)
+	public boolean insertOrders(String order_no, String user_id, String to_user, String to_address, String to_phone)
 	{
 
 		try
 		{
+
 			sSql = "";
 			sSql += " INSERT INTO tb_orders ( ";
 			sSql += "     order_no ";
 			sSql += "     , order_date ";
 			sSql += "     , user_id ";
+			sSql += "     , to_user ";
+			sSql += "     , to_address ";
+			sSql += "     , to_phone ";
 			sSql += " ) VALUES ( ";
 			sSql += "     ? ";
 			sSql += "   , trunc(sysdate) ";
 			sSql += "   , ? ";
+			sSql += "   , ? ";
+			sSql += "   , ? ";
+			sSql += "   , ? ";
 			sSql += " ) ";
 
 			PreparedStatement stmt = conn.prepareStatement(sSql);
-			stmt.setString(1, order_no); // ? 첫번째에 값을 지정
-			stmt.setString(2, user_id); // ? 첫번째에 값을 지정
+			stmt.setString(1, order_no); 
+			stmt.setString(2, user_id);
+			stmt.setString(3, to_user);
+			stmt.setString(4, to_address);
+			stmt.setString(5, to_phone);
 
 			int r = stmt.executeUpdate(); // 실행된 쿼리의 결과 count반환
 
 			if (r < 1)
 			{
-				conn.rollback();
 				return false;
 			}
 
@@ -73,6 +82,7 @@ public class OrdersDao
 		catch (SQLException e)
 		{
 			e.printStackTrace();
+			return false;
 		}
 		return true;
 
@@ -88,7 +98,6 @@ public class OrdersDao
 			// System.out.println("Item Code: " + list.get(i).getItem_code());
 			// System.out.println("Item Qty: " + list.get(i).getItem_qty());
 			// }
-
 			for (int i = 0 ; i < list.size() ; i++)
 			{
 				sSql = "";
@@ -114,7 +123,6 @@ public class OrdersDao
 
 				if (r < 1)
 				{
-					conn.rollback();
 					return false;
 				}
 			}
@@ -122,6 +130,7 @@ public class OrdersDao
 		catch (Exception e)
 		{
 			e.printStackTrace();
+			return false;
 		}
 		return true;
 	}
@@ -287,6 +296,90 @@ public class OrdersDao
 		}
 
 		return seq;
+	}
+	
+	public String getUserEmail()
+	{
+		String Users = null;
+		try
+		{
+			Statement stmt = conn.createStatement();
+			
+			sSql = "";
+			sSql += " SELECT LISTAGG(usr.email, ',') WITHIN GROUP (ORDER BY usr.email) email  ";
+			sSql += "   FROM tb_orders ord ";
+			sSql += "   JOIN tb_user usr ";
+			sSql += "     ON ord.user_id = usr.user_id ";
+			sSql += "  WHERE status = 0 ";
+			sSql += "    AND order_date < trunc (sysdate) - 3 ";
+			
+			ResultSet rs = stmt.executeQuery(sSql);
+
+			while (rs.next())
+			{
+				Users = rs.getString("email");
+			}
+
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return Users;
+	}
+	public String getLastOrders()
+	{
+		String strOrd = "";
+
+		try
+		{
+			Statement stmt = conn.createStatement();
+			
+			sSql = "";
+			sSql += " SELECT '<tr padding = 5px>'     start_html ";
+			sSql += "      , '<td>' || ord.order_no ";
+			sSql += "                    || '</td>' order_no ";
+			sSql += "      , '<td>' || ord.order_date ";
+			sSql += "                    || '</td>' order_date ";
+			sSql += "      , '<td>' || usr.user_name ";
+			sSql += "                    || '</td>' user_name ";
+			sSql += "      , '<td>' || itm.item_name ";
+			sSql += "                    || '</td>' item_name ";
+			sSql += "      , '<td>' || odd.item_qty ";
+			sSql += "                    || '</td>' item_qty ";
+			sSql += "      , '</tr>'    end_html ";
+			sSql += "   FROM tb_orders ord ";
+			sSql += "   JOIN tb_orderdetail odd ";
+			sSql += " ON ord.order_no = odd.order_no ";
+			sSql += "   JOIN tb_user        usr ";
+			sSql += " ON ord.user_id = usr.user_id ";
+			sSql += "   JOIN tb_item_master itm ";
+			sSql += " ON odd.item_code = itm.item_code ";
+			sSql += "  WHERE status = 0 ";
+			sSql += "    AND order_date < trunc (sysdate) - 3 ";
+			sSql += "  ORDER BY ord.order_no ";
+			sSql += "         , odd.orderdetail_no ";
+			
+			ResultSet rs = stmt.executeQuery(sSql);
+	
+			strOrd += "<html><body><h2>미완료주문</h2>";
+			strOrd += "<table border = 1px solid #ccc color = black><tr><th>주문번호</th><th>주문일자</th><th>담당자</th><th>상품명</th><th>상품수량</th></tr>";
+			while (rs.next())
+			{
+				strOrd += rs.getString("start_html") + rs.getString("order_no") + rs.getString("order_date") + 
+						rs.getString("user_name") + rs.getString("item_name") + rs.getString("item_qty") + rs.getString("end_html");
+			}
+			strOrd += "</table></body></html>";
+			
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+		return strOrd;
 	}
 
 }

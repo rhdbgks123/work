@@ -7,5 +7,8 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="D:/JAVA PROGRAM/ojdbc11.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA PROGRAM/jakarta.mail-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA PROGRAM/jakarta.mail-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/JAVA PROGRAM/jakarta.activation-2.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

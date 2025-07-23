@@ -22,8 +22,10 @@ public class UserDao
 		sSql += "     , user_name ";
 		sSql += "     , phone ";
 		sSql += "     , address ";
+		sSql += "     , email ";
 		sSql += " ) VALUES ( ";
 		sSql += "     ? ";
+		sSql += "   , ? ";
 		sSql += "   , ? ";
 		sSql += "   , ? ";
 		sSql += "   , ? ";
@@ -36,6 +38,8 @@ public class UserDao
 			stmt.setString(2, user.getUser_name());
 			stmt.setString(3, user.getPhone());
 			stmt.setString(4, user.getAddress());
+			stmt.setString(5, user.getEmail());
+
 
 			int r = stmt.executeUpdate(); // 실행된 쿼리의 결과 count반환
 
@@ -67,6 +71,7 @@ public class UserDao
 			sSql += "      , user_name ";
 			sSql += "      , REGEXP_REPLACE(phone, '(.{3})(.{4})(.{4})', '\\1-\\2-\\3') phone";
 			sSql += "      , address ";
+			sSql += "      , email ";
 			sSql += "   FROM tb_user ";
 			if (user_name != null || user_name != "")
 				sSql += " WHERE user_name like '%" + user_name + "%' ";
@@ -80,6 +85,7 @@ public class UserDao
 				user.setUser_name(rs.getString("user_name"));
 				user.setPhone(rs.getString("phone"));
 				user.setAddress(rs.getString("address"));
+				user.setEmail(rs.getString("email"));
 				list.add(user);
 			}
 		}
