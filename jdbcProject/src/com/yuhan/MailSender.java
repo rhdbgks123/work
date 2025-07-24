@@ -16,7 +16,6 @@ public class MailSender
 
 		// 수신자 및 메일 내용
 		String subject = "네이버 SMTP 메일 테스트";
-		String body = mailbody;
 
 		// SMTP 서버 설정
 		Properties props = new Properties();

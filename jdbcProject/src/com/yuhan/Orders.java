@@ -17,6 +17,8 @@ public class Orders
 	private String touser;
 	private String toaddress;
 	private String tophone;
+	private String order_ym;
+	private String sum_price;
 
 	public String getOrder_no()
 	{
@@ -156,6 +158,26 @@ public class Orders
 	public void setTophone(String tophone)
 	{
 		this.tophone = tophone;
+	}
+
+	public String getOrder_ym()
+	{
+		return order_ym;
+	}
+
+	public void setOrder_ym(String order_ym)
+	{
+		this.order_ym = order_ym;
+	}
+
+	public String getSum_price()
+	{
+		return sum_price;
+	}
+
+	public void setSum_price(String sum_price)
+	{
+		this.sum_price = sum_price;
 	}
 
 }

@@ -161,10 +161,10 @@ public class OrdersDao
 			sSql += "  WHERE 1=1";
 			sSql += "    AND ord.status != 9 ";
 
-			if (order_no != null && order_no != "")
+			if (!order_no.equals(null) && !order_no.equals(""))
 				sSql += "   AND ord.order_no like '%" + order_no + "%' ";
 
-			if (order_date != null && order_date != "")
+			if (!order_date.equals(null) && !order_date.equals(""))
 				sSql += "   AND ord.order_date = to_date('" + order_date + "', 'YYMMDD')";
 
 			rs = stmt.executeQuery(sSql);
@@ -328,6 +328,46 @@ public class OrdersDao
 		
 		return Users;
 	}
+	
+	public ArrayList<Orders> getOrderPrice(String orderYm)
+	{
+		Statement stmt;
+		ArrayList<Orders> orders = new ArrayList<Orders>();
+		try
+		{
+			stmt = conn.createStatement();
+			sSql = "";
+			sSql += " SELECT to_char(ord.order_date, 'yyyymm') ord_ym ";
+			sSql += "      , to_char(SUM(odd.item_qty * itm.price),'L999,999,999') sum_price ";
+			sSql += "   FROM tb_orders ord ";
+			sSql += "   JOIN tb_orderdetail odd ";
+			sSql += "     ON ord.order_no = odd.order_no ";
+			sSql += "   JOIN tb_item_master itm ";
+			sSql += "     ON odd.item_code = itm.item_code ";
+			sSql += "  WHERE 1=1";
+			if (!orderYm.equals("") && !orderYm.equals(null)) 
+				sSql += "    AND to_char (ord.order_date, 'YYYYMM') = '" + orderYm + "' ";
+			sSql += "    AND ord.status = 9 ";
+			sSql += "  GROUP BY to_char (ord.order_date, 'yyyymm') ";
+	
+			ResultSet rs = stmt.executeQuery(sSql);
+	
+			while (rs.next())
+			{
+				Orders order = new Orders();
+				order.setOrder_ym(rs.getString("ord_ym"));
+				order.setSum_price(rs.getString("sum_price"));
+				orders.add(order);
+			}
+
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return orders;
+	}
+	
 	public String getLastOrders()
 	{
 		String strOrd = "";
@@ -337,7 +377,7 @@ public class OrdersDao
 			Statement stmt = conn.createStatement();
 			
 			sSql = "";
-			sSql += " SELECT '<tr padding = 5px>'     start_html ";
+			sSql += " SELECT '<tr>'     start_html ";
 			sSql += "      , '<td>' || ord.order_no ";
 			sSql += "                    || '</td>' order_no ";
 			sSql += "      , '<td>' || ord.order_date ";
@@ -362,22 +402,43 @@ public class OrdersDao
 			sSql += "         , odd.orderdetail_no ";
 			
 			ResultSet rs = stmt.executeQuery(sSql);
-	
-			strOrd += "<html><body><h2>미완료주문</h2>";
-			strOrd += "<table border = 1px solid #ccc color = black><tr><th>주문번호</th><th>주문일자</th><th>담당자</th><th>상품명</th><th>상품수량</th></tr>";
+			strOrd += " <html> ";
+			strOrd += " <head> ";
+			strOrd += "     <style> ";
+			strOrd += "         table { ";
+			strOrd += "             border-collapse: collapse; ";
+			strOrd += "             width: 100%; ";
+			strOrd += "         } ";
+			strOrd += "         table, th, td { ";
+			strOrd += "             border: 1px solid #ccc; ";
+			strOrd += "             color: black; ";
+			strOrd += "         } ";
+			strOrd += "         th, td { ";
+			strOrd += "             padding: 10px;  ";
+			strOrd += "             text-align: left; ";
+			strOrd += "         } ";
+			strOrd += "     </style> ";
+			strOrd += " </head> ";
+			strOrd += " <body> ";
+			strOrd += "     <h2>미완료주문</h2> ";
+			strOrd += "     <table> ";
+			strOrd += "         <tr> ";
+			strOrd += "             <th>주문번호</th><th>주문일자</th><th>담당자</th><th>상품명</th><th>상품수량</th> ";
+			strOrd += "         </tr> ";
 			while (rs.next())
 			{
 				strOrd += rs.getString("start_html") + rs.getString("order_no") + rs.getString("order_date") + 
 						rs.getString("user_name") + rs.getString("item_name") + rs.getString("item_qty") + rs.getString("end_html");
 			}
-			strOrd += "</table></body></html>";
+			strOrd += "		</table> ";
+			strOrd += " </body>";
+			strOrd += " </html>";
 			
 		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
-		
 		
 		return strOrd;
 	}
