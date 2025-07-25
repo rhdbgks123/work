@@ -31,13 +31,30 @@ public class Book
 	{
 		this.author = author;
 	}
-	public int getPrcie()
+	public int getPrice()
 	{
 		return price;
 	}
-	public void setPrie(int prie)
+	public void setPrice(int price)
 	{
-		this.price = prie;
+		this.price = price;
+	}
+	@Override
+	public String toString()
+	{
+		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", price=" + price + "]";
+	}
+
+	public String showBrief()
+	{
+		return " " + id + " " + title + " " + price;  
+	}
+	
+	public String showDetail()
+	{
+		String fomaStr = "도서 ID : " + id + " 제목:" + title;
+		fomaStr += "\n저자:   " + author + " 가격: " + price + "원";
+		return fomaStr;
 	}
 	
 }

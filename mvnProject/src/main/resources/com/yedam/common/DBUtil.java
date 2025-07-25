@@ -10,7 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 // mybatis 환경에서 sqlsessionfactory 생성
 public class DBUtil
 {
-	public SqlSessionFactory getInstance() 
+	public static SqlSessionFactory getInstance() 
 	{
 		String resource = "com/yedam/common/mybatis-config.xml";
 		InputStream inputStream = null;
