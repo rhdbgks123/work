@@ -5,7 +5,7 @@ public class Book
 	private int id;
 	private String title;
 	private String author;
-	private int prie;
+	private int price;
 	
 	public int getId()
 	{
@@ -31,13 +31,13 @@ public class Book
 	{
 		this.author = author;
 	}
-	public int getPrie()
+	public int getPrcie()
 	{
-		return prie;
+		return price;
 	}
 	public void setPrie(int prie)
 	{
-		this.prie = prie;
+		this.price = prie;
 	}
 	
 }

@@ -13,7 +13,7 @@ public class Main {
 		SqlSessionFactory factory = util.getInstance(); //DBUtil에 선언한 getInstance
 		SqlSession session = factory.openSession(); // sqlsession 객체반환
 		
-		Book book = session.selectOne("com.yedam.mapper.Bookmapper.selectBook", 1000);
+		Book book = session.selectOne("com.yedam.mapper.selectBook", 1000);
 		
 		System.out.println(book);
 		
