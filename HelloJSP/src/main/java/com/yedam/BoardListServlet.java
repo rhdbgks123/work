@@ -25,7 +25,7 @@ public class BoardListServlet extends HttpServlet {
      * Default constructor. 
      */
     public BoardListServlet() {
-        super();
+        super(); 
         System.out.println("BoardListServlet 생성자");
     }
 

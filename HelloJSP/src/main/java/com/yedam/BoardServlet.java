@@ -71,6 +71,7 @@ public class BoardServlet extends HttpServlet{
 			html += "     <td colspan='3'>" + board.getCreateDate() + "</td> ";
 			html += "   </tr> ";
 			html += " </table> ";
+			html += " <a href = 'deleteBoard?board_no=" + board.getBoardNo() + "'>글삭제</a>";
 			html += " <a href = './BoardListServlet'>글목록</a>";
 			
 			res.getWriter().print(html);
