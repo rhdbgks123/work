@@ -13,4 +13,6 @@ public interface Bookmapper
 	public int insertBook(Book book);
 	
 	public int deleteBook(int id);
+	
+	public int totalCount();
 }

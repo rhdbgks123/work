@@ -29,4 +29,8 @@
     <delete id = "deleteBook" parameterType = "int">
     	delete from book where id = #{id}
     </delete>
+    
+    <select id = "totalCount" resultType = "int">
+    select count(*) from book
+    </select>
 </mapper>

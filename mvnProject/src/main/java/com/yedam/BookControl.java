@@ -47,6 +47,7 @@ public class BookControl
 	void bookList()
 	{
 		int page = 1;
+		int last_page = (int) Math.ceil(mapper.totalCount()* 1.0 / 5 );
 		while(true)
 		{
 			List<Book> list = mapper.selectBooks(page);
