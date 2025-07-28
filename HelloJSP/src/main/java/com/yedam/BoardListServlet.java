@@ -64,7 +64,7 @@ public class BoardListServlet extends HttpServlet {
 		}
 		html += "   </tbody> ";
 		html += " </table> ";
-		
+		html += " <a href = '/HelloJSP/html/register_form.html'>신규</a>";
 		out.println(html);
 	}
 
