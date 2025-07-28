@@ -24,6 +24,12 @@
 			<artifactId>lombok</artifactId>
 			<version>1.18.38</version>
 		</dependency>
+		<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>4.0.1</version>  <!-- 또는 필요한 버전으로 -->
+    <scope>provided</scope>
+</dependency>
 	</dependencies>
 
 

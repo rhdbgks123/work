@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- httl://localhost:8080/HelloJSP/html/register_form.html // 현재위치 -->
+	<form action='../board' method = 'post'> <!-- from에서 action은 전달할 페이지  // method 요청방식 post는 주소표시줄에 보이지 않음, get은 보임 -->
+		<table border='1'>
+			<tr>
+				<th>제목</th>
+				<td><input type='text' name='title'></td>
+			</tr>
+			<tr>
+				<th>작성자</th>
+				<td><input type='text' name='writer'></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td><textarea name='content'></textarea></td>
+			</tr>
+			<tr>
+				<td colspan='2' align='center'><input type='submit' value ='등록'></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
