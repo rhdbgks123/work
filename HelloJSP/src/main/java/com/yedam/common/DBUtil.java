@@ -12,7 +12,7 @@ public class DBUtil
 {
 	public static SqlSessionFactory getInstance() 
 	{
-		String resource = "com/yedam/common/mybatis-config.xml";
+		String resource = "config/mybatis-config.xml";
 		InputStream inputStream = null;
 		try
 		{
