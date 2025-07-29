@@ -38,9 +38,9 @@ public class BoardListServlet extends HttpServlet {
 		System.out.println("Hello Servlet!!!");
 		PrintWriter out = response.getWriter(); // 출력 stream
 		out.println("<h1>Hello Servlet 2</h1>");
-		
+		int page = 0;
 		BoardService srv = new BoardServiceImpl();
-		List<BoardVO> list = srv.boardList();
+		List<BoardVO> list = srv.boardList(page);
 		
 		String html = "";
 		html += " <table border = '2'> ";

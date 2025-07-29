@@ -17,9 +17,9 @@ public class BoardServiceImpl implements BoardService{
 	
 	
 	@Override
-	public List<BoardVO> boardList() {
+	public List<BoardVO> boardList(int page) {
 		// TODO 자동 생성된 메소드 스텁
-		return mapper.selectList();
+		return mapper.selectList(page);
 	}
 
 	@Override
