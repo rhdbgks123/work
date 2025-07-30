@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.common.SearchDTO;
 import com.yedam.service.BoardService;
 import com.yedam.service.BoardServiceImpl;
 import com.yedam.vo.BoardVO;
@@ -40,7 +41,7 @@ public class BoardListServlet extends HttpServlet {
 		out.println("<h1>Hello Servlet 2</h1>");
 		int page = 0;
 		BoardService srv = new BoardServiceImpl();
-		List<BoardVO> list = srv.boardList(page);
+		List<BoardVO> list = srv.boardList(new SearchDTO());
 		
 		String html = "";
 		html += " <table border = '2'> ";

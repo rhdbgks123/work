@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 import com.yedam.common.PageDTO;
+import com.yedam.common.SearchDTO;
 import com.yedam.service.BoardService;
 import com.yedam.service.BoardServiceImpl;
 import com.yedam.vo.BoardVO;
@@ -20,17 +21,26 @@ public class BoardListControl implements Control
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
 	{
 		String strPage = req.getParameter("page");
+		String con = req.getParameter("searchCondition");
+		String key = req.getParameter("keyword");
+		SearchDTO search = new SearchDTO();
+		
 		strPage = strPage==null ? "1" : strPage;
+		search.setPage(Integer.parseInt(strPage));
+		search.setSearchCondition(con);
+		search.setKeyword(key);
+		
 		// WEB-INF/html/board_list.html
 		BoardService srv = new BoardServiceImpl();
-		List<BoardVO> list = srv.boardList(Integer.parseInt(strPage));
+		List<BoardVO> list = srv.boardList(search);
 		
 		//페이징
-		int totalCnt = 512;
+		int totalCnt = srv.totalCount(search);
 		PageDTO paging = new PageDTO(Integer.parseInt(strPage), totalCnt);
 		
 		req.setAttribute("board_list", list);
 		req.setAttribute("paging", paging);
+		req.setAttribute("search", search);
 		
 		req.getRequestDispatcher("WEB-INF/html/board_list.jsp").forward(req, res);
 		

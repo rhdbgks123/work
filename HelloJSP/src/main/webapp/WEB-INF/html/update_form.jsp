@@ -4,25 +4,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="includes/header.jsp"></jsp:include>
 
-<!-- <%BoardVO board = (BoardVO) request.getAttribute("board_info");%> -->
-<h3>글 상세 화면</h3>
-<form action="updateForm.do">
+<h3>글 수정 화면</h3>
+<form action="update.do">
 <input type="hidden" value="${board_info.boardNo }" name ="bno">
 <table border = '2' class = 'table'> 
   <tr> 
     <th>글번호</th> 
-    <!-- <td><%=board.getBoardNo()%></td> -->
     <td><c:out value="${board_info.boardNo }" /></td> 
     <th>조회수</th> 
     <td><c:out value="${board_info.viewCnt}" /></td> 
   </tr> 
   <tr> 
     <th>제목</th> 
-    <td colspan='3'><c:out value="${board_info.title}" /></td> 
+    <td colspan='3'><input type = "text" name ="title" value="${board_info.title}" class="form-control"/></td> 
   </tr> 
   <tr> 
     <th>내용</th> 
-    <td colspan='3'><c:out value="${board_info.content}" /></td> 
+    <td colspan='3'><textarea name="content"class="form-control">${board_info.content}</textarea></td> 
   </tr> 
   <tr> 
     <th>작성자</th> 
@@ -34,12 +32,13 @@
   </tr>
   <tr>
   <td colspan = "4" align="center">
-  	<input type ="submit" value = "수정" class = "btn btn-success">
-	<button type ="button" onclick="location.href='remove.do?bno=${board_info.boardNo}'" class = "btn btn-danger">삭제</button>
+  	<input type ="submit" value = "저장" class = "btn btn-success">
+	<button type ="button" class = "btn btn-secondary">취소</button>
 	</td>
 </tr>
 </table> 
 </form>
+<a href = 'remove.do?bno=<c:out value="${board_info.boardNo }" />'>글삭제</a>
 
 
 

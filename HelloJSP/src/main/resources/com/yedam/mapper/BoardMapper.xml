@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.mapper.BoardMapper">
-	<select id="selectList" resultType="board" parameterType="int">
+	<select id="selectList" resultType="board" parameterType="search">
 		SELECT ta.*
 		  FROM (SELECT /*+ INDEX_DESC(b PK_BOARD)*/ ROWNUM rn
 		             , b.*
-		        FROM tbl_board b
+		          FROM tbl_board b
+		         <where>
+		           <if test="searchCondition != null and searchCondition == 'T'.toString() ">
+		           		title like '%'||#{keyword}||'%'
+		           </if>
+		           <if test="searchCondition != null and searchCondition == 'W'.toString() ">
+		           		writer like '%'||#{keyword}||'%'
+		           </if>
+		           <if test="searchCondition != null and searchCondition == 'TW'.toString() ">
+		           		(writer like '%'||#{keyword}||'%' OR title like '%'||#{keyword}||'%')
+		           </if>
+		         </where>
 		       ) ta
-		       <![CDATA[
+		       
 		 WHERE rn > (#{page} - 1) * 5
-		   AND rn <= #{page} * 5]]>
+  		   <![CDATA[
+  		   AND rn <= #{page} * 5
+  		   ]]>
 	</select>
 	<select id="selectBoard" resultType="board"
 		parameterType="int">
@@ -18,7 +31,7 @@
 
 	<update id="updateCount" parameterType="int">
 		update tbl_board
-		set view_cnt = view_cnt + 1
+		set view_cnt = view_cnt + 1, update_date = sysdate
 		where board_no = #{boardNo}
 	</update>
 
@@ -30,5 +43,27 @@
 	<delete id = "deleteBoard" parameterType = "int">
 		delete from tbl_board where board_no = #{boardNo} 
 	</delete>
+	
+	<select id = "selectCnt" resultType = "int" parameterType = "search">
+		select count(1) cnt from tbl_board
+         <where>
+           <if test="searchCondition != null and searchCondition == 'T'.toString() ">
+           		title like '%'||#{keyword}||'%'
+           </if>
+           <if test="searchCondition != null and searchCondition == 'W'.toString() ">
+           		writer like '%'||#{keyword}||'%'
+           </if>
+           <if test="searchCondition != null and searchCondition == 'TW'.toString() ">
+           		(writer like '%'||#{keyword}||'%' OR title like '%'||#{keyword}||'%')
+           </if>
+         </where>
+	</select>
+	
+	<update id ="updateBoard" parameterType = "board" >
+		update tbl_board
+		   set title = #{title}
+		     , content = #{content}
+		 where board_no = #{boardNo} 
+	</update>
 	
 </mapper>
