@@ -18,11 +18,12 @@ public class BoardControl implements Control {
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		String bno = req.getParameter("bno");
+		String page = req.getParameter("page");
 		// WEB-INF/html/board_list.html
 		BoardService srv = new BoardServiceImpl();
 		
 		req.setAttribute("board_info", srv.searchBoard(Integer.parseInt(bno)));
-		
+		req.setAttribute("page", Integer.parseInt(page));
 		req.getRequestDispatcher("WEB-INF/html/board.jsp").forward(req, res);		
 	}
 

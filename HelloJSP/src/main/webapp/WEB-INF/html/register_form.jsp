@@ -4,6 +4,7 @@
    <jsp:include page="includes/header.jsp" />
    <h3>register_form.jsp</h3>
 	<form action='addBoard.do' method = 'post'> <!-- from에서 action은 전달할 페이지  // method 요청방식 post는 주소표시줄에 보이지 않음, get은 보임 -->
+	<input type='hidden' required name='writer' class="form-control" value ="${logId }">
 		<table class='table' border='1'>
 			<tr>
 				<th class= "table-primary">제목</th>
@@ -11,7 +12,7 @@
 			</tr>
 			<tr>
 				<th class= "table-primary">작성자</th>
-				<td><input type='text' required name='writer' class="form-control"></td>
+				<td>${logId }</td>
 			</tr>
 			<tr>
 				<th class= "table-primary">내용</th>

@@ -43,7 +43,7 @@
 		<!-- for(BoardVO board : list) 와 동일  --> 
 			<tr>
 				<td align='center'><c:out value = "${board.boardNo}" /></td>
-				<td><a href='board.do?bno=<c:out value = "${board.boardNo}" />'><c:out value = "${board.title}" /></a></td>
+				<td><a href='board.do?bno=${board.boardNo}&page=${paging.curPage}'><c:out value = "${board.title}" /></a></td>
 				<td><c:out value = "${board.writer}" /></td>
 				<td><c:out value = "${board.viewCnt}" /></td>
 			</tr>

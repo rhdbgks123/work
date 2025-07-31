@@ -5,8 +5,9 @@
 <jsp:include page="includes/header.jsp"></jsp:include>
 
 <h3>글 수정 화면</h3>
-<form action="update.do">
+<form action="modify.do">
 <input type="hidden" value="${board_info.boardNo }" name ="bno">
+<input type="hidden" value="${page }" name ="page">
 <table border = '2' class = 'table'> 
   <tr> 
     <th>글번호</th> 

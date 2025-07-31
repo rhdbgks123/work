@@ -27,12 +27,13 @@ public class ModifyControl implements Control
 		int bno = Integer.parseInt(strbno);
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
+		int page = Integer.parseInt(req.getParameter("page"));
 
 		board.setBoardNo(bno);
 		board.setTitle(title);
 		board.setContent(content);
 		if(srv.modifyBoard(board))
-			res.sendRedirect("board.do?bno="+bno);
+			res.sendRedirect("boardList.do?page="+page);
 		else
 			System.out.println("에러발생");
 		
