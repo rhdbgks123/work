@@ -60,7 +60,7 @@ public class FrontController extends HttpServlet
 		// http://localhost:8080/HelloJSP/boardList.do - URL
 		// /HelloJSP/boardList.do - URI
 
-		String uri = req.getRequestURI();
+		String uri = req.getRequestURI();  
 		String context = req.getContextPath(); // /HelloJSP - 프로젝트
 		String page = uri.substring(context.length()); // context의 length부터 끝까지 자르기
 

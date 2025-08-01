@@ -24,7 +24,15 @@
 	  </tr> 
 	  <tr> 
 	    <th>제목</th> 
-	    <td colspan='3'><c:out value="${board_info.title}" /></td> 
+	    <td colspan='3'><c:out value="${board_info.title}" /></td>
+	    <c:choose>
+	    	<c:when test="${!empty board_info.image }">
+			    <td rowspan='2'><img width="130px" height="100px" alt="" src="upload/${board_info.image }"></td> 
+	    	</c:when>
+	    	<c:otherwise>
+	    	    <td rowspan='2'><img alt="" src="https://dummyimage.com/130X100/000/fff&text=no+image"></td>
+	    	</c:otherwise>
+	    </c:choose>
 	  </tr> 
 	  <tr> 
 	    <th>내용</th> 
