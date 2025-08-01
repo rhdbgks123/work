@@ -33,14 +33,14 @@ public class ModifyFormControl implements Control
 			// view 영역(jsp)
 			req.setAttribute("board_info", board);
 			req.setAttribute("page", page);
-			req.getRequestDispatcher("WEB-INF/html/update_form.jsp").forward(req, res);
+			req.getRequestDispatcher("user/update_form.tiles").forward(req, res);
 		}
 		else
 		{
 			//권한 없을경우
 			req.setAttribute("board_info", board);
 			req.setAttribute("msg","권한이 없습니다.");
-			req.getRequestDispatcher("WEB-INF/html/board.jsp").forward(req, res);
+			req.getRequestDispatcher("user/board.tiles").forward(req, res);
 			
 		}
 			

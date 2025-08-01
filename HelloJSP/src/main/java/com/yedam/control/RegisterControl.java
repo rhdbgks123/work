@@ -12,7 +12,7 @@ public class RegisterControl implements Control {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException  {
-			req.getRequestDispatcher("WEB-INF/html/register_form.jsp").forward(req, res);
+			req.getRequestDispatcher("user/register_form.tiles").forward(req, res);
 	}
 
 }

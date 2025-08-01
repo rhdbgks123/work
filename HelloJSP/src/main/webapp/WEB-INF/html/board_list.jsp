@@ -4,7 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<jsp:include page="includes/header.jsp" />
 <!-- request.getAttribute는 무조건 Object타입, 그래서 원하는 형식으로 변경 가능 -->
 <!-- 검색 -->
 <div class="center">
@@ -88,4 +87,3 @@
 <button class="btn btn-primary" type="submit">신규</button>
 </div>
 </form>
-<jsp:include page="includes/footer.jsp" />

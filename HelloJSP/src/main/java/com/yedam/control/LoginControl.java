@@ -32,7 +32,8 @@ public class LoginControl implements Control
 		{
 			HttpSession session =  req.getSession();
 			session.setAttribute("logId", id);
-			res.sendRedirect("boardList.do");			
+			session.setAttribute("auth", member.getResponsibility());
+			res.sendRedirect("boardList.do");
 		}
 		
 		

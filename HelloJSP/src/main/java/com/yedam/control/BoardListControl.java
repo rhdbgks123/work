@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.common.Control;
 import com.yedam.common.PageDTO;
@@ -41,9 +42,20 @@ public class BoardListControl implements Control
 		req.setAttribute("board_list", list);
 		req.setAttribute("paging", paging);
 		req.setAttribute("search", search);
+		HttpSession session = req.getSession();
+		String authority = (String) session.getAttribute("auth");
+
+		if(authority==null) 
+		{
+			req.getRequestDispatcher("user/board_list.tiles").forward(req, res);
+			return;
+		}
 		
-		req.getRequestDispatcher("WEB-INF/html/board_list.jsp").forward(req, res);
-		
+//		req.getRequestDispatcher("WEB-INF/html/board_list.jsp").forward(req, res);
+		if(authority.equals("Admin"))
+			req.getRequestDispatcher("admin/board_list.tiles").forward(req, res);
+		else
+			req.getRequestDispatcher("user/board_list.tiles").forward(req, res);
 		//jsp(뷰 역할) 페이지에 데이터 전달
 		
 		

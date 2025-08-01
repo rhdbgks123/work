@@ -16,6 +16,7 @@ import com.yedam.control.BoardListControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginFormControl;
 import com.yedam.control.LogoutControl;
+import com.yedam.control.MeberListControl;
 import com.yedam.control.ModifyControl;
 import com.yedam.control.ModifyFormControl;
 //INIT - SERVICE - DESTROY
@@ -51,6 +52,7 @@ public class FrontController extends HttpServlet
 		map.put("/loginForm.do", new LoginFormControl());
 		map.put("/login.do", new LoginControl());
 		map.put("/logout.do", new LogoutControl());
+		map.put("/memberList.do", new MeberListControl());
 	}
 
 	@Override
