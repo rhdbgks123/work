@@ -53,3 +53,9 @@
 	</table> 
 </form>
 
+<!-- 댓글 달기 -->
+
+
+
+<script type="text/javascript" src = "js/board.js"></script>
+

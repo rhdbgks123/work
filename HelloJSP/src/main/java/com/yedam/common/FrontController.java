@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.control.AddBoardControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
+import com.yedam.control.JSControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginFormControl;
 import com.yedam.control.LogoutControl;
@@ -24,6 +25,7 @@ import com.yedam.control.ModifyFormControl;
 // 요청url == 실행할 컨트롤
 import com.yedam.control.RegisterControl;
 import com.yedam.control.RemoveControl;
+import com.yedam.control.ReplyListControl;
 import com.yedam.control.SignFormControl;
 import com.yedam.control.SignupControl;
 
@@ -53,6 +55,12 @@ public class FrontController extends HttpServlet
 		map.put("/login.do", new LoginControl());
 		map.put("/logout.do", new LogoutControl());
 		map.put("/memberList.do", new MeberListControl());
+		
+		//etc
+		map.put("/js.do", new JSControl());
+		
+		//댓글관련
+		map.put("/replyList.do", new ReplyListControl()); // 글번호 -> 댓글목록
 	}
 
 	@Override

@@ -1,0 +1,26 @@
+package com.yedam.common;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import com.yedam.mapper.ReplyMapper;
+import com.yedam.vo.ReplyVO;
+
+public class Main
+{
+
+	public static void main(String[] args)
+	{
+		SqlSession session = DBUtil.getInstance().openSession();
+		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
+		
+		List<ReplyVO> list = mapper.selectReplyList(527);
+		
+		for(ReplyVO reply : list)
+		{
+			System.out.println(reply);
+		}
+	}
+
+}
