@@ -24,7 +24,9 @@ import com.yedam.control.ModifyFormControl;
 // *.do -> 실행할 컨트롤
 // 요청url == 실행할 컨트롤
 import com.yedam.control.RegisterControl;
+import com.yedam.control.RegisterReplyControl;
 import com.yedam.control.RemoveControl;
+import com.yedam.control.RemoveReplyControl;
 import com.yedam.control.ReplyListControl;
 import com.yedam.control.SignFormControl;
 import com.yedam.control.SignupControl;
@@ -61,6 +63,8 @@ public class FrontController extends HttpServlet
 		
 		//댓글관련
 		map.put("/replyList.do", new ReplyListControl()); // 글번호 -> 댓글목록
+		map.put("/removeReply.do", new RemoveReplyControl());
+		map.put("/registerReply.do", new RegisterReplyControl());
 	}
 
 	@Override

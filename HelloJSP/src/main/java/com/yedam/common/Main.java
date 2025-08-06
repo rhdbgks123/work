@@ -12,15 +12,15 @@ public class Main
 
 	public static void main(String[] args)
 	{
-		SqlSession session = DBUtil.getInstance().openSession();
-		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
-		
-		List<ReplyVO> list = mapper.selectReplyList(527);
-		
-		for(ReplyVO reply : list)
-		{
-			System.out.println(reply);
-		}
+//		SqlSession session = DBUtil.getInstance().openSession();
+//		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
+//		
+//		List<ReplyVO> list = mapper.selectReplyList(527, 1);
+//		
+//		for(ReplyVO reply : list)
+//		{
+//			System.out.println(reply);
+//		}
 	}
 
 }
