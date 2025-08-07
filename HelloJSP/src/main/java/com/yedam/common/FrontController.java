@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.control.AddBoardControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
+import com.yedam.control.ChartControl;
 import com.yedam.control.JSControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginFormControl;
@@ -20,16 +21,21 @@ import com.yedam.control.LogoutControl;
 import com.yedam.control.MeberListControl;
 import com.yedam.control.ModifyControl;
 import com.yedam.control.ModifyFormControl;
+import com.yedam.control.RegisterCalendarControl;
 //INIT - SERVICE - DESTROY
 // *.do -> 실행할 컨트롤
 // 요청url == 실행할 컨트롤
 import com.yedam.control.RegisterControl;
 import com.yedam.control.RegisterReplyControl;
+import com.yedam.control.RemoveCalendarControl;
 import com.yedam.control.RemoveControl;
 import com.yedam.control.RemoveReplyControl;
 import com.yedam.control.ReplyListControl;
+import com.yedam.control.SearchCalendarControl;
+import com.yedam.control.ShowCalendarControl;
 import com.yedam.control.SignFormControl;
 import com.yedam.control.SignupControl;
+import com.yedam.control.TotalCntControl;
 
 public class FrontController extends HttpServlet
 {
@@ -65,6 +71,16 @@ public class FrontController extends HttpServlet
 		map.put("/replyList.do", new ReplyListControl()); // 글번호 -> 댓글목록
 		map.put("/removeReply.do", new RemoveReplyControl());
 		map.put("/registerReply.do", new RegisterReplyControl());
+		map.put("/totalReply.do", new TotalCntControl()); // 글등록. bno input -> {"totalCnt": 78} 이라는 json return
+		
+		//기타
+		map.put("/chartData.do", new ChartControl());
+		
+		// 달력관련
+		map.put("/showCal.do", new ShowCalendarControl());
+		map.put("/searchCal.do", new SearchCalendarControl());
+		map.put("/removeCal.do", new RemoveCalendarControl());
+		map.put("/registerCal.do", new RegisterCalendarControl());
 	}
 
 	@Override

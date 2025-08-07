@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.mapper.CalendarMapper">
+
+	
+	<select id = "selectCalendar" resultType = "calendar">
+		SELECT event_no, title, start_date "start", end_date "end" 
+		  FROM tbl_event
+	</select>
+	
+	<insert id = "insertCalendar" parameterType = "calendar">
+		insert into tbl_reply (title, start_date , end_date)
+		values(#{title},#{start},#{end})
+	</insert>
+	
+	<delete id = "deleteCalendar" parameterType = "int">
+		delete from tbl_event where event_no = #{eventNo} 
+	</delete>
+	
+</mapper>

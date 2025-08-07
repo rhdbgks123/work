@@ -28,4 +28,10 @@
 	<delete id = "deleteReply" parameterType = "int">
 		delete from tbl_reply where reply_no = #{replyNo} 
 	</delete>
+	
+	<select id = "selectCount" parameterType = "int" resultType = "int">
+		SELECT count(1)
+		  FROM tbl_reply
+		 WHERE board_no = #{boardNo}
+	</select>
 </mapper>

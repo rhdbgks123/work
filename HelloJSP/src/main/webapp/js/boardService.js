@@ -2,6 +2,25 @@
  * boardService.js
  */
 
+class PageVO
+{
+	//생성자
+	constructor(currPage, totalCnt)
+	{
+		this.currPage = currPage;
+		this.totalCnt = totalCnt;
+		this.end = Math.ceil(currPage / 10) * 10; // 10개씩 보여주기
+		this.start = this.end - 9;
+		
+		let realEnd = Math.ceil(totalCnt / 5); // 한페이지당 5개씩 보여주기
+		this.end = this.end > realEnd ? realEnd : this.end;
+		this.prev = this.start > 1 ;
+		this.next = this.end < realEnd;
+	}	
+	
+}
+
+
 const svc = 
 {
 	count:20,
@@ -33,6 +52,13 @@ const svc =
 	registerReply(param = {bno, reply, replyer}, successCallback, errorCallback)
 	{
 		fetch('registerReply.do?bno='+ param.bno +'&reply=' + param.reply + '&replyer=' + param.replyer)
+		.then(resolve => resolve.json())	
+		.then(successCallback)
+		.catch(errorCallback);
+	},
+	replyTotalCount(bno, successCallback, errorCallback)
+	{
+		fetch('totalReply.do?bno='+ bno)
 		.then(resolve => resolve.json())	
 		.then(successCallback)
 		.catch(errorCallback);

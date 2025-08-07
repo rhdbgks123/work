@@ -97,7 +97,9 @@ ul
 	<!-- 댓글 목록 -->
 
 	<div class = "content">
+	<!-- BEFORE BEGIN -->
 		<ul>
+	<!-- AFTER BEGIN -->
 			<li>
 				<span class="col-sm-2">글번호</span>
 				<span class="col-sm-5">내용</span>
@@ -105,12 +107,15 @@ ul
 				<span class="con-sm-1">삭제</span>
 			</li>
 			<li><hr /></li>
+			
+	<!-- BEFORE END -->
 		</ul>
+	<!-- AFTER END -->
 	</div>
 
 	<!-- 댓글 페이징 -->
 
-	<div class ="footer">
+	<div class ="footer" >
 	<div class="pagination">
 	  <a href="#">&laquo;</a>
 	  <a href="#">1</a>
