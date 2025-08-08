@@ -9,7 +9,7 @@
 	</select>
 	
 	<insert id = "insertCalendar" parameterType = "calendar">
-		insert into tbl_reply (title, start_date , end_date)
+		insert into tbl_event (title, start_date, end_date)
 		values(#{title},#{start},#{end})
 	</insert>
 	

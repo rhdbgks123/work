@@ -20,7 +20,7 @@ public class ShowCalendarControl implements Control
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
 	{
-		req.getRequestDispatcher("user/calendar.tiles").forward(req, res);
+		req.getRequestDispatcher("selectable.html").forward(req, res);
 	}
 
 }

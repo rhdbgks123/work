@@ -1,11 +1,15 @@
 package com.yedam.control;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yedam.common.Control;
 import com.yedam.service.CalendarService;
 import com.yedam.service.CalendarServiceImpl;
@@ -25,11 +29,21 @@ public class RegisterCalendarControl implements Control
 		calendar.setTitle(req.getParameter("title"));
 		calendar.setStart(req.getParameter("start"));
 		calendar.setEnd(req.getParameter("end"));
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-		if(srv.registerCalendar(calendar))
+		try 
 		{
-			req.getRequestDispatcher("seachCal.do");
+			srv.registerCalendar(calendar);
+			map.put("retCode", "OK");
+			map.put("retVal", calendar);
 		}
+		catch (Exception e)
+		{
+			map.put("retCode", "NG");
+		}
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String json = gson.toJson(map);
+		res.getWriter().print(json);
 	}
 
 }

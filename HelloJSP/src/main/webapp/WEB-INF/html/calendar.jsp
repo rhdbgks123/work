@@ -16,7 +16,7 @@
   }
 
 </style>
-
+  
   <div id='calendar'></div>
 
 <script>
