@@ -24,7 +24,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         level: 3 // 지도의 확대 레벨
     };
 
-var map = new kakao.maps.Map(mapContainer, mapOption);
+var map = new kakao.maps.Map(mapContainer, mapOption); 
 
 // 마커가 표시될 위치입니다 
 var markerPosition = new kakao.maps.LatLng(lat,lng); 
