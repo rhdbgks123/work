@@ -25,6 +25,7 @@ public class ModifyFormControl implements Control
 		BoardService srv = new BoardServiceImpl(); 
 		BoardVO board = srv.searchBoard(bno);
 		System.out.println("test");
+		System.out.println("test2");
 		
 		HttpSession session = req.getSession();
 		String sid = (String)session.getAttribute("logId");
