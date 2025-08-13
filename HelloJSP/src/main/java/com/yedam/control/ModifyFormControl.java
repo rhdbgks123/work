@@ -24,10 +24,7 @@ public class ModifyFormControl implements Control
 		// DB 조회
 		BoardService srv = new BoardServiceImpl(); 
 		BoardVO board = srv.searchBoard(bno);
-		System.out.println("test");
-		System.out.println("test2");
-
-		System.out.println("test3");
+		System.out.println("test4");
 		HttpSession session = req.getSession();
 		String sid = (String)session.getAttribute("logId");
 		
