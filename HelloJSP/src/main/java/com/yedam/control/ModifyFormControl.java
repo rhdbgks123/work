@@ -22,8 +22,9 @@ public class ModifyFormControl implements Control
 		int bno = Integer.parseInt(req.getParameter("bno"));
 		int page = Integer.parseInt(req.getParameter("page"));
 		// DB 조회
-		BoardService srv = new BoardServiceImpl();
+		BoardService srv = new BoardServiceImpl(); 
 		BoardVO board = srv.searchBoard(bno);
+		System.out.println("test");
 		
 		HttpSession session = req.getSession();
 		String sid = (String)session.getAttribute("logId");
