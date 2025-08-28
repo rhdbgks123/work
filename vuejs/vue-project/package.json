@@ -19,9 +19,8 @@
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-vue": "^10.4.0",
-    "vue-eslint-parser": "^10.2.0"
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3"
   },
   "eslintConfig": {
     "root": true,
@@ -29,15 +28,13 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/vue3-recommended",
+      "plugin:vue/vue3-essential",
       "eslint:recommended"
     ],
     "parserOptions": {
       "parser": "@babel/eslint-parser"
     },
-    "rules": {
-      "vue/no-multiple-template-root": "off"
-    }
+    "rules": {}
   },
   "browserslist": [
     "> 1%",
