@@ -61,12 +61,28 @@ export default {
             productList: [],
         };
     },
+    beforeCreate() {
+        console.log("beforeCretae");
+    },
+    created() {
+        console.log("created");
+    },
+    beforeMount() {
+        console.log("beforeMount");
+    },
+    beforeUpdate() {
+        console.log("beforeUpdate");
+    },
+    updated() {
+        console.log("beforeUpdate");
+    },
+
     mounted() {
         //컴포넌트가 생성되면 생성, 마운트, 소멸 등등 각각의 시점에 기능을 추가 가능
-        fetch("http://192.168.0.83:3000/products")
+        fetch("http://192.168.0.8:3000/products")
             .then((response) => response.json())
             .then((result) => {
-                this.productList = result;
+                this.productList = result; // 데이터변경
             });
     },
 };

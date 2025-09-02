@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //상품목록 콘솔 출력 post요청
+        fetch('http://localhost:3000/api/productImageInsert', 
+            {
+                method:"POST",  headers: 
+                {
+                    "Content-Type": "application/json;charset=utf-8"
+                }, 
+                body: JSON.stringify({ param: { product_id : "9", type :"2", path:"sample.jpg"} })
+            })
+        .then(resolve => resolve.json())
+        .then(result => {
+            console.log(result);
+        })
+    </script>
+</body>
+</html>
